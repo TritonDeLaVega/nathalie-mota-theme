@@ -330,14 +330,112 @@ select {
     width: 100%;
 }
 
-.gallery-grid img {
+/* Chaque item a un contexte de position */
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-item img {
     width: 100%;
     height: 300px;
     object-fit: cover;
     display: block;
     border-radius: 0;
-    /* PAS de coins arrondis */
+    transition: filter 0.3s ease;
+    position: relative;
+    z-index: 1;
 }
+
+.gallery-item .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    transition: background 0.3s ease;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.gallery-item .overlay::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(2px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 6;
+}
+
+.gallery-item .icon-eye,
+.gallery-item .icon-fullscreen {
+    position: absolute;
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item .icon-eye {
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    transform: translate(-50%, -50%);
+    background: url('image/oeil.png') no-repeat center/contain;
+}
+
+.gallery-item .icon-fullscreen {
+    top: 10px;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    background: url('image/Icon_fullscreen.png') no-repeat center/contain;
+}
+
+.gallery-item .text-bottom-left,
+.gallery-item .text-bottom-right {
+    position: absolute;
+    bottom: 10px;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+    pointer-events: none;
+}
+
+.gallery-item .text-bottom-left {
+    left: 10px;
+}
+
+.gallery-item .text-bottom-right {
+    right: 10px;
+}
+
+/* Hover effect uniquement sur l'élément survolé */
+.gallery-item:hover img {
+    filter: brightness(0.6) blur(1px);
+}
+
+.gallery-item:hover .overlay::before,
+.gallery-item:hover .icon-eye,
+.gallery-item:hover .icon-fullscreen,
+.gallery-item:hover .text-bottom-left,
+.gallery-item:hover .text-bottom-right {
+    opacity: 1;
+}
+
+
 
 .load-more {
     font-family: 'Space Mono', monospace !important;
