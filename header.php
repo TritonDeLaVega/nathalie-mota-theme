@@ -1,26 +1,56 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
+
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php wp_title(); ?></title>
     <?php wp_head(); ?>
 </head>
+
 <body <?php body_class(); ?>>
 
-<header>
-    <div class="logo">
-        <a href="<?php echo home_url(); ?>">
-            <img src="<?php echo get_template_directory_uri(); ?>/images/logo-nathalie.png" alt="Logo Nathalie Mota">
-        </a>
-    </div>
+<header class="site-header">
+    <div class="header-container">
+        <!-- Logo -->
+        <div class="site-logo">
+            <a href="<?php echo esc_url(home_url('/')); ?>">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/image/nathalie_mota_logo.png" alt="Logo Nathalie Mota">
+            </a>
+        </div>
 
-    <nav>
-        <?php
-        wp_nav_menu(array(
-            'theme_location' => 'main-menu',
-            'container' => false,
-        ));
-        ?>
-    </nav>
+        <!-- Menu desktop -->
+        <nav class="main-nav">
+            <?php
+            wp_nav_menu(array(
+                'theme_location' => 'main-menu',
+                'container' => false,
+                'menu_class' => 'menu',
+            ));
+            ?>
+        </nav>
+
+        <!-- Burger icon for mobile -->
+        <div class="burger-menu" id="burger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
 </header>
+
+<!-- ✅ Image juste après le header -->
+<div class="header-banner">
+    <img src="<?php echo get_stylesheet_directory_uri(); ?>/image/Header.png" alt="Bannière header">
+</div>
+
+<!-- Mobile menu OUTSIDE the header -->
+<nav class="mobile-nav hidden" id="mobile-nav">
+    <?php
+    wp_nav_menu(array(
+        'theme_location' => 'main-menu',
+        'container' => false,
+        'menu_class' => 'mobile-menu',
+    ));
+    ?>
+</nav>
