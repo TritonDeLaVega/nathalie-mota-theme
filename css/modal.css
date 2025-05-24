@@ -1,38 +1,144 @@
-/* code spécial pour modale  */
-
-
-.hidden {
-    display: none !important;
-}
-
-.modal {
-    position: fixed;
-    z-index: 999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.6);
-}
-
-.modal-content {
-    background-color: #fff5e9;
-    margin: 10% auto;
-    padding: 2rem;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 600px;
-    position: relative;
-}
-
-.close-modal {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 2rem;
-    cursor: pointer;
-}
 #contact-modal {
-    display: none !important;
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+#contact-modal.visible {
+    display: flex;
+}
+
+#contact-modal .modal-wrapper {
+    position: relative;
+    display: inline-block;
+    max-width: 90vw;
+    box-sizing: border-box;
+}
+
+#contact-modal .modal-content {
+
+    width: 597px;
+    height: 769px;
+    background: #fff;
+    border: 4px solid #000;
+    border-radius: 6px;
+    padding-bottom: 30px;
+    padding-top: 10px;
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    overflow: hidden;
+    
+}
+
+#contact-modal .contact-header {
+    width: 100%;
+}
+
+#contact-modal .contact-header img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+#contact-modal .modal-body {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: flex-end;
+    justify-content: center;
+    display: flex;
+
+}
+
+#contact-modal form.wpcf7-form {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+#contact-modal input[type="text"],
+#contact-modal input[type="email"],
+#contact-modal textarea,
+#contact-modal select {
+    display: block;
+    /* Obligatoire pour le centrage */
+    padding: 0.4rem;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+
+#contact-modal textarea {
+    height: 80px;
+    resize: none;
+}
+
+#contact-modal .wpcf7-submit {
+    display: block;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    background-color: #D8D8D8;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-sizing: border-box;
+    font-family: 'Space Mono', monospace;
+}
+
+
+#contact-modal label {
+    display: block;
+    /* pour gérer la largeur */
+    margin: 0 auto;
+    /* plus aucune marge verticale */
+    text-align: left;
+    /* pour bouger le texte vers la gauche */
+    font-weight: 400;
+    /* optionnel : un peu plus de poids pour les labels */
+    font-size: 0.9rem;
+    /* optionnel, ajustable */
+}
+
+#contact-modal form.wpcf7-form p {
+    margin: 0;
+    padding: 0;
+}
+
+#contact-modal span[data-name]:not([data-name="message"]) {
+    margin-bottom: 24px;
+    display: inline-block;
+
+}
+#contact-modal span[data-name="message"] {
+    margin-bottom: 18px;
+    display: inline-block;
+
+}
+#contact-modal span[data-name] input,#contact-modal span[data-name] textarea {
+    width: 263px;
+    height: 40px;
+}
+#contact-modal input[type="submit"] {
+    width: 263px;
+    height: 50px;
+}
+#contact-modal span[data-name] textarea {
+    height: 210px;
+}
+#contact-modal .wpcf7-spinner {
+    display: none;
+
 }

@@ -26,13 +26,13 @@ document.addEventListener('DOMContentLoaded', function () {
             link.addEventListener('click', (e) => {
                 const target = link.getAttribute('href');
 
-                // Si c'est #contact ou a la classe .open-contact-modal, ouvrir la modale
+                // Ouvre la modale si le lien cible #contact ou a la classe spéciale
                 if (target === '#contact' || link.classList.contains('open-contact-modal')) {
                     e.preventDefault();
                     openContactModal();
                 }
 
-                // Fermer le menu mobile quoi qu'il arrive
+                // Fermer le menu mobile quoi qu’il arrive
                 mobileNav.classList.remove('visible');
                 mobileNav.classList.add('hidden');
                 burger.classList.remove('open');
@@ -41,35 +41,39 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Fonctions de gestion de la modale contact
+    // Fonction pour ouvrir la modale
     function openContactModal() {
         const modal = document.getElementById('contact-modal');
         if (modal) {
-            modal.classList.remove('hidden');
+            modal.classList.add('visible');
         }
     }
 
+    // Fonction pour fermer la modale
     function closeContactModal() {
         const modal = document.getElementById('contact-modal');
         if (modal) {
-            modal.classList.add('hidden');
+            modal.classList.remove('visible');
         }
     }
 
-    // Délégation d'événement (utile si la modale est ajoutée dynamiquement)
+    // Ouverture depuis n’importe quel élément avec la classe
     document.addEventListener('click', function (e) {
         const target = e.target;
 
-        // Ouverture via lien ou bouton
-        if (target.matches('a[href="#contact"], .open-contact-modal')) {
+        // Ouvrir si clic sur un élément de la classe .open-contact-modal
+        if (target.closest('.open-contact-modal')) {
             e.preventDefault();
             openContactModal();
         }
 
-        // Fermeture via croix
-        if (target.matches('#close-modal')) {
-            e.preventDefault();
-            closeContactModal();
+        // Fermer si clic en dehors du contenu de la modale
+        const modal = document.getElementById('contact-modal');
+        if (modal && modal.classList.contains('visible')) {
+            const modalContent = modal.querySelector('.modal-content');
+            if (target === modal && !modalContent.contains(e.target)) {
+                closeContactModal();
+            }
         }
     });
 });

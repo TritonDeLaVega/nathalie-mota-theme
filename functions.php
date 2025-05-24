@@ -13,3 +13,5 @@ function mota_register_menus() {
     register_nav_menu('main-menu', 'Menu principal');
 }
 add_action('after_setup_theme', 'mota_register_menus');
+add_filter('wpcf7_autop_or_not', '__return_false');
+add_theme_support('post-thumbnails');

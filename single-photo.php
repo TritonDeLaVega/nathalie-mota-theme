@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template pour une photo individuelle
  * Template Name: Single Photo
@@ -10,8 +11,8 @@ get_header(); ?>
 
   <section class="photo-detail">
     <div class="photo-info">
-      <h1><em>Team</em> <strong>Mariée</strong></h1>
-      <p><strong>Référence :</strong> B2F408</p>
+      <h1><em>Team</em><br>Mariée</h1>
+      <p><strong>Référence :</strong> BF2400</p>
       <p><strong>Catégorie :</strong> Mariage</p>
       <p><strong>Format :</strong> Portrait</p>
       <p><strong>Type :</strong> Numérique</p>
@@ -19,7 +20,7 @@ get_header(); ?>
 
       <div class="contact-section">
         <p>Cette photo vous intéresse ?</p>
-        <button>Contact</button>
+        <button class="open-contact-modal">Contact</button>
       </div>
     </div>
 
@@ -27,8 +28,14 @@ get_header(); ?>
       <img src="<?php echo get_stylesheet_directory_uri(); ?>/image/nathalie-15.jpeg" alt="Team Mariée">
       <div class="lightbox-thumbnail">
         <img src="<?php echo get_stylesheet_directory_uri(); ?>/image/nathalie-0.jpeg" alt="Miniature">
-        <!-- Tu peux ajouter les flèches ici si tu comptes en faire un carrousel -->
+
+        <div class="thumbnail-arrows">
+          <button class="arrow-left" aria-label="Précédent">←</button>
+          <button class="arrow-right" aria-label="Suivant">→</button>
+        </div>
       </div>
+
+
     </div>
   </section>
 

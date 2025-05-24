@@ -66,6 +66,19 @@ body {
     /* toujours au-dessus du menu */
 }
 
+.site-header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -15px;
+    /* pour descendre légèrement le flou */
+    height: 15px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), transparent);
+    pointer-events: none;
+    z-index: -1;
+}
+
 .header-image-wrapper {
     width: 100vw;
     position: relative;
@@ -455,6 +468,7 @@ select {
     width: 160px;
 }
 
+/*code pour single-photo.php*/
 
 .single-photo {
     padding: 2rem;
@@ -466,18 +480,44 @@ select {
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
-    margin-bottom: 4rem;
+    margin-bottom: 8rem;
 }
 
 .photo-info {
     flex: 1;
     min-width: 280px;
+    max-height: 475px;
+    /* Ajuste selon le besoin */
+    padding-top: 451px;
 }
 
+.photo-info>*:not(.contact-section) {
+    margin-top: 24px;
+    /* ajuste cette valeur à ta convenance */
+}
+
+
 .photo-info h1 {
-    font-family: 'monospace', sans-serif;
-    font-size: 2rem;
-    margin-bottom: 1rem;
+    font-family: Space Mono;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 66px;
+    line-height: 58px;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    text-transform: uppercase;
+
+}
+
+p {
+    font-family: 'Space Mono', monospace;
+    font-weight: 400;
+}
+
+.photo-suggestions h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
 }
 
 .photo-image {
@@ -486,7 +526,8 @@ select {
 
     display: flex;
     flex-direction: column;
-    align-items: stretch; /* conserve la largeur de l’image */
+    align-items: stretch;
+    /* conserve la largeur de l’image */
 }
 
 .photo-image img {
@@ -498,25 +539,78 @@ select {
 .lightbox-thumbnail {
     margin-top: 0.5rem;
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    align-items: flex-end;
+    /* 👉 aligne la miniature et les flèches à droite */
+    gap: 0.5rem;
 }
 
 .lightbox-thumbnail img {
-    width: 80px;
+    width: 20%;
     height: auto;
     cursor: pointer;
 }
 
+/* Conteneur des flèches */
+.thumbnail-arrows {
+    display: flex;
+    gap: 1rem;
+    margin-right: 2.5%;
+    /* ajuste la valeur selon le rendu souhaité */
+}
+
+/* Style des flèches */
+.thumbnail-arrows button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #000;
+    transition: color 0.2s;
+}
+
+.thumbnail-arrows button:hover {
+    color: #666;
+}
+
+
+
+
 .contact-section {
-    margin-top: 2rem;
+    position: relative;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    /* espace entre le texte et le bouton */
+    border-top: 1px solid #000;
+    /* Trait au-dessus */
+    border-bottom: 1px solid #000;
+    /* Trait en dessous */
+}
+
+/* Trait prolongé de celui du bas, vers la droite */
+.contact-section::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 100%;
+    /* commence juste après la section */
+    width: 616px;
+    /* ajuste cette valeur pour la longueur du prolongement */
+    height: 1px;
+    background-color: #000;
 }
 
 .contact-section button {
     background-color: #ccc;
     border: none;
-    padding: 0.5rem 2rem;
+    padding: 0.7rem 6rem;
     cursor: pointer;
 }
+
 
 .photo-suggestions h2 {
     font-size: 1rem;
@@ -532,11 +626,13 @@ select {
 }
 
 .suggestions-grid img {
-  width: 100%;
-  max-width: calc(50% - 0.5rem);
-  max-height: 495px; /* limite la hauteur */
-  object-fit: cover; /* recadre sans déformer */
-  display: block;
+    width: 100%;
+    max-width: calc(50% - 0.5rem);
+    max-height: 495px;
+    /* limite la hauteur */
+    object-fit: cover;
+    /* recadre sans déformer */
+    display: block;
 }
 
 
@@ -596,4 +692,89 @@ select {
         margin: 0 auto;
         display: block;
     }
+
+    .single-photo {
+        padding: 2rem 1rem;
+        max-width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
+
+    .photo-detail {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 2rem;
+        margin-top: -2rem;
+        /* décalage vers le haut */
+    }
+
+    .photo-image,
+    .photo-info {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .photo-image img,
+    .suggestions-grid>img {
+        display: block;
+        width: 100%;
+        max-width: 600px;
+        height: auto;
+        /* ← garde la hauteur naturelle */
+        object-fit: cover;
+        margin: 0 auto;
+        padding: 0 1rem;
+        /* marges gauche/droite identiques */
+        box-sizing: border-box;
+    }
+
+    .lightbox-thumbnail {
+        display: none;
+    }
+
+    .photo-info h1 {
+        font-size: clamp(2rem, 6vw, 3rem);
+        line-height: 1.2;
+        text-align: left;
+    }
+
+    .photo-info p {
+        margin-top: 1rem;
+        text-align: left;
+    }
+
+    .contact-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+        padding: 2rem 0;
+        border-top: 1px solid #000;
+        border-bottom: 1px solid #000;
+        position: relative;
+    }
+
+    .contact-section::after {
+        display: none;
+    }
+
+    .contact-section button {
+        padding: 0.7rem 2rem;
+        font-size: 1rem;
+        width: auto;
+        margin: 0 auto;
+        /* centré */
+    }
+
+    .suggestions-grid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+
+
+
 }
