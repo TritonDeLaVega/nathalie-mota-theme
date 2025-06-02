@@ -804,18 +804,82 @@ body.lightbox-open {
 
 .lightbox-img {
     display: block;
-    max-width: min(564px, 90vw);
-    max-height: min(495px, 80vh);
-    width: auto;
+    width: 100%;
     height: auto;
+    max-width: min(90vw, 900px);
+    max-height: min(80vh, 800px);
     margin: 0 auto;
     object-fit: contain;
     box-shadow: 0 2px 16px rgba(0,0,0,0.15);
     border-radius: 6px;
-    background: transparent; /* Pas de fond */
+    background: transparent;
+}
+.lightbox-img-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+    max-width: min(90vw, 900px);
+    margin: 0 auto;
+}
+.lightbox-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 2.2rem;
+    color: #fff;
+    cursor: pointer;
+    z-index: 10;
+}
+.lightbox-center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
 }
 
+.lightbox-prev,
+.lightbox-next {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    color: #fff;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    transition: color 0.2s;
+    z-index: 2;
+}
 
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    color: #e00000;
+}
+.lightbox-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    letter-spacing: 0.05em;
+    margin: 1.2rem 0 0 0;
+    padding: 0 0.5rem;
+    box-sizing: border-box;
+}
+
+.lightbox-ref,
+.lightbox-cat {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 @media screen and (max-width: 768px) {
 
     /* ===== Footer ===== */
