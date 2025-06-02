@@ -39,12 +39,7 @@
         </div>
     </header>
 
-    <!-- ✅ Image juste après le header -->
-    <?php if (!is_page('Single Photo')) : ?>
-        <div class="header-banner">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/image/Header.png" alt="Bannière header">
-        </div>
-    <?php endif; ?>
+    
     <!-- Mobile menu OUTSIDE the header -->
     <nav class="mobile-nav hidden" id="mobile-nav">
         <?php
