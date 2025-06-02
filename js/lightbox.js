@@ -5,30 +5,43 @@ document.addEventListener('DOMContentLoaded', function () {
     const fullscreenIcons = document.querySelectorAll('.icon-fullscreen');
     const closeBtn = lightbox.querySelector('.lightbox-close');
 
-    // fullscreenIcons.forEach(icon => {
-    //     icon.addEventListener('click', function (e) {
-    //         console.log('Icône fullscreen cliquée');
-    //         const imageUrl = icon.getAttribute('data-full');
-    //         lightboxImg.setAttribute('src', imageUrl);
-    //         lightbox.classList.remove('hidden');
-    //         lightbox.setAttribute('aria-hidden', 'false');
-    //     });
-    // });
-
-    closeBtn.addEventListener('click', function () {
-        console.log('Bouton de fermeture de la lightbox cliqué');
-        lightbox.style.display = 'none'; // Ajouté : masque la lightbox
-        lightbox.setAttribute('aria-hidden', 'true');
-        lightboxImg.setAttribute('src', '');
-    });
-
+    // Ouvre la lightbox
     fullscreenIcons.forEach(icon => {
         icon.addEventListener('click', function (e) {
-            console.log('Icône fullscreen cliquée');
             const imageUrl = icon.getAttribute('data-full');
             lightboxImg.setAttribute('src', imageUrl);
-            lightbox.style.display = 'block'; // Ajouté : affiche la lightbox
+            lightbox.style.display = 'flex'; // Utilise flex pour le centrage
             lightbox.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('lightbox-open'); // Empêche le scroll du body
         });
+    });
+
+    // Ferme la lightbox
+    closeBtn.addEventListener('click', function () {
+        lightbox.style.display = 'none';
+        lightbox.setAttribute('aria-hidden', 'true');
+        lightboxImg.setAttribute('src', '');
+        document.body.classList.remove('lightbox-open'); // Rétablit le scroll du body
+    });
+
+    // Ferme la lightbox si on clique sur l'overlay (optionnel)
+    const overlay = lightbox.querySelector('.lightbox-overlay');
+    if (overlay) {
+        overlay.addEventListener('click', function () {
+            lightbox.style.display = 'none';
+            lightbox.setAttribute('aria-hidden', 'true');
+            lightboxImg.setAttribute('src', '');
+            document.body.classList.remove('lightbox-open');
+        });
+    }
+
+    // Ferme la lightbox avec la touche Echap
+    document.addEventListener('keydown', function (e) {
+        if (lightbox.style.display !== 'none' && (e.key === 'Escape' || e.key === 'Esc')) {
+            lightbox.style.display = 'none';
+            lightbox.setAttribute('aria-hidden', 'true');
+            lightboxImg.setAttribute('src', '');
+            document.body.classList.remove('lightbox-open');
+        }
     });
 });
