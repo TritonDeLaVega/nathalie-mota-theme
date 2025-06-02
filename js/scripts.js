@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const links = mobileNav.querySelectorAll('a');
 
         burger.addEventListener('click', () => {
+            console.log('Burger menu cliqué');
             const isVisible = mobileNav.classList.contains('visible');
             if (isVisible) {
                 mobileNav.classList.remove('visible');
@@ -24,15 +25,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
         links.forEach(link => {
             link.addEventListener('click', (e) => {
+                console.log(`Lien du menu mobile cliqué : ${link.getAttribute('href')}`);
                 const target = link.getAttribute('href');
 
-                // Ouvre la modale si le lien cible #contact ou a la classe spéciale
                 if (target === '#contact' || link.classList.contains('open-contact-modal')) {
                     e.preventDefault();
+                    console.log('Ouverture de la modale depuis un lien du menu mobile');
                     openContactModal();
                 }
 
-                // Fermer le menu mobile quoi qu’il arrive
                 mobileNav.classList.remove('visible');
                 mobileNav.classList.add('hidden');
                 burger.classList.remove('open');
@@ -43,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Fonction pour ouvrir la modale
     function openContactModal() {
+        console.log('Fonction openContactModal() appelée');
         const modal = document.getElementById('contact-modal');
         if (modal) {
             modal.classList.add('visible');
@@ -51,29 +53,31 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Fonction pour fermer la modale
     function closeContactModal() {
+        console.log('Fonction closeContactModal() appelée');
         const modal = document.getElementById('contact-modal');
         if (modal) {
             modal.classList.remove('visible');
         }
     }
 
-    // Ouverture depuis n’importe quel élément avec la classe
     document.addEventListener('click', function (e) {
         const target = e.target;
 
-        // Ouvrir si clic sur un élément de la classe .open-contact-modal
         if (target.closest('.open-contact-modal')) {
             e.preventDefault();
+            console.log('Clique sur élément .open-contact-modal');
             openContactModal();
         }
 
-        // Fermer si clic en dehors du contenu de la modale
         const modal = document.getElementById('contact-modal');
         if (modal && modal.classList.contains('visible')) {
             const modalContent = modal.querySelector('.modal-content');
             if (target === modal && !modalContent.contains(e.target)) {
+                console.log('Clic en dehors de la modale, fermeture');
                 closeContactModal();
             }
         }
     });
+
+    
 });

@@ -52,82 +52,99 @@
 
     <div class="gallery-grid">
         <div class="gallery-item">
-            <a href="<?php echo get_permalink(get_page_by_title('Single Photo')->ID); ?>">
-                <img src="<?php echo get_template_directory_uri(); ?>/image/nathalie-0.jpeg" alt="photo 0" />
-            </a>
+            <img src="<?php echo get_template_directory_uri(); ?>/image/nathalie-0.jpeg" alt="photo 0" />
             <div class="overlay"></div>
-            <div class="icon-eye"></div>
-            <div class="icon-fullscreen"></div>
+
+            <!-- Lien cliquable uniquement sur l'icône œil -->
+            <a href="<?php echo get_permalink(get_page_by_title('Single Photo')->ID); ?>">
+                <div class="icon-eye"></div>
+            </a>
+            <div class="icon-fullscreen" data-full="<?php echo get_template_directory_uri(); ?>/image/nathalie-0.jpeg"></div>
             <div class="text-bottom-left">LE MENU</div>
             <div class="text-bottom-right">CATÉGORIE</div>
         </div>
         <div class="gallery-item">
-            <a href="<?php echo get_permalink(get_page_by_title('Single Photo')->ID); ?>">
-                <img src="<?php echo get_template_directory_uri(); ?>/image/nathalie-1.jpeg" alt="photo 1" />
-            </a>
+            <img src="<?php echo get_template_directory_uri(); ?>/image/nathalie-1.jpeg" alt="photo 1" />
             <div class="overlay"></div>
-            <div class="icon-eye"></div>
-            <div class="icon-fullscreen"></div>
+
+            <!-- Lien cliquable uniquement sur l'icône œil -->
+            <a href="<?php echo get_permalink(get_page_by_title('Single Photo')->ID); ?>">
+                <div class="icon-eye"></div>
+            </a>
+            <div class="icon-fullscreen" data-full="<?php echo get_template_directory_uri(); ?>/image/nathalie-1.jpeg"></div>
             <div class="text-bottom-left">LE MENU</div>
             <div class="text-bottom-right">CATÉGORIE</div>
         </div>
         <div class="gallery-item">
-            <a href="<?php echo get_permalink(get_page_by_title('Single Photo')->ID); ?>">
-                <img src="<?php echo get_template_directory_uri(); ?>/image/nathalie-2.jpeg" alt="photo 2" />
-            </a>
+            <img src="<?php echo get_template_directory_uri(); ?>/image/nathalie-2.jpeg" alt="photo 2" />
             <div class="overlay"></div>
-            <div class="icon-eye"></div>
-            <div class="icon-fullscreen"></div>
+
+            <!-- Lien cliquable uniquement sur l'icône œil -->
+            <a href="<?php echo get_permalink(get_page_by_title('Single Photo')->ID); ?>">
+                <div class="icon-eye"></div>
+            </a>
+            <div class="icon-fullscreen" data-full="<?php echo get_template_directory_uri(); ?>/image/nathalie-2.jpeg"></div>
             <div class="text-bottom-left">LE MENU</div>
             <div class="text-bottom-right">CATÉGORIE</div>
         </div>
         <div class="gallery-item">
-            <a href="<?php echo get_permalink(get_page_by_title('Single Photo')->ID); ?>">
-                <img src="<?php echo get_template_directory_uri(); ?>/image/nathalie-3.jpeg" alt="photo 3" />
-            </a>
+            <img src="<?php echo get_template_directory_uri(); ?>/image/nathalie-3.jpeg" alt="photo 3" />
             <div class="overlay"></div>
-            <div class="icon-eye"></div>
-            <div class="icon-fullscreen"></div>
+
+            <!-- Lien cliquable uniquement sur l'icône œil -->
+            <a href="<?php echo get_permalink(get_page_by_title('Single Photo')->ID); ?>">
+                <div class="icon-eye"></div>
+            </a>
+            <div class="icon-fullscreen" data-full="<?php echo get_template_directory_uri(); ?>/image/nathalie-3.jpeg"></div>
             <div class="text-bottom-left">LE MENU</div>
             <div class="text-bottom-right">CATÉGORIE</div>
         </div>
         <div class="gallery-item">
-            <a href="<?php echo get_permalink(get_page_by_title('Single Photo')->ID); ?>">
-                <img src="<?php echo get_template_directory_uri(); ?>/image/nathalie-4.jpeg" alt="photo 4" />
-            </a>
+            <img src="<?php echo get_template_directory_uri(); ?>/image/nathalie-4.jpeg" alt="photo 4" />
             <div class="overlay"></div>
-            <div class="icon-eye"></div>
-            <div class="icon-fullscreen"></div>
+
+            <!-- Lien cliquable uniquement sur l'icône œil -->
+            <a href="<?php echo get_permalink(get_page_by_title('Single Photo')->ID); ?>">
+                <div class="icon-eye"></div>
+            </a>
+            <div class="icon-fullscreen" data-full="<?php echo get_template_directory_uri(); ?>/image/nathalie-4.jpeg"></div>
             <div class="text-bottom-left">LE MENU</div>
             <div class="text-bottom-right">CATÉGORIE</div>
         </div>
         <div class="gallery-item">
-            <a href="<?php echo get_permalink(get_page_by_title('Single Photo')->ID); ?>">
-                <img src="<?php echo get_template_directory_uri(); ?>/image/nathalie-5.jpeg" alt="photo 5" />
-            </a>
+            <img src="<?php echo get_template_directory_uri(); ?>/image/nathalie-5.jpeg" alt="photo 5" />
             <div class="overlay"></div>
-            <div class="icon-eye"></div>
-            <div class="icon-fullscreen"></div>
+
+            <!-- Lien cliquable uniquement sur l'icône œil -->
+            <a href="<?php echo get_permalink(get_page_by_title('Single Photo')->ID); ?>">
+                <div class="icon-eye"></div>
+            </a>
+            <div class="icon-fullscreen" data-full="<?php echo get_template_directory_uri(); ?>/image/nathalie-5.jpeg"></div>
             <div class="text-bottom-left">LE MENU</div>
             <div class="text-bottom-right">CATÉGORIE</div>
         </div>
         <div class="gallery-item">
-            <a href="<?php echo get_permalink(get_page_by_title('Single Photo')->ID); ?>">
-                <img src="<?php echo get_template_directory_uri(); ?>/image/nathalie-6.jpeg" alt="photo 6" />
-            </a>
+            <img src="<?php echo get_template_directory_uri(); ?>/image/nathalie-6.jpeg" alt="photo 6" />
             <div class="overlay"></div>
-            <div class="icon-eye"></div>
-            <div class="icon-fullscreen"></div>
+
+            <!-- Lien cliquable uniquement sur l'icône œil -->
+            <a href="<?php echo get_permalink(get_page_by_title('Single Photo')->ID); ?>">
+                <div class="icon-eye"></div>
+            </a>
+            <div class="icon-fullscreen" data-full="<?php echo get_template_directory_uri(); ?>/image/nathalie-6.jpeg"></div>
             <div class="text-bottom-left">LE MENU</div>
             <div class="text-bottom-right">CATÉGORIE</div>
         </div>
         <div class="gallery-item">
-            <a href="<?php echo get_permalink(get_page_by_title('Single Photo')->ID); ?>">
-                <img src="<?php echo get_template_directory_uri(); ?>/image/nathalie-7.jpeg" alt="photo 7" />
-            </a>
+            <img src="<?php echo get_template_directory_uri(); ?>/image/nathalie-7.jpeg" alt="photo 7" />
             <div class="overlay"></div>
-            <div class="icon-eye"></div>
-            <div class="icon-fullscreen"></div>
+
+            <!-- Lien cliquable uniquement sur l'icône œil -->
+            <a href="<?php echo get_permalink(get_page_by_title('Single Photo')->ID); ?>">
+                <div class="icon-eye"></div>
+            </a>
+
+            <div class="icon-fullscreen" data-full="<?php echo get_template_directory_uri(); ?>/image/nathalie-7.jpeg"></div>
             <div class="text-bottom-left">LE MENU</div>
             <div class="text-bottom-right">CATÉGORIE</div>
         </div>

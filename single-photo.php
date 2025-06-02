@@ -44,27 +44,31 @@ get_header(); ?>
     <div class="suggestions-grid">
 
       <div class="suggestion-item">
-        <a href="#">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/image/nathalie-4.jpeg" alt="Suggestion 1">
-        </a>
+        <img src="<?php echo get_stylesheet_directory_uri(); ?>/image/nathalie-4.jpeg" alt="Suggestion 1">
         <div class="overlay"></div>
-        <div class="icon-eye"></div>
-        <div class="icon-fullscreen"></div>
+
+        <a href="<?php echo get_permalink(get_page_by_title('Single Photo')->ID); ?>" aria-label="Voir la photo en détail">
+          <div class="icon-eye"></div>
+        </a>
+
+        <div class="icon-fullscreen" data-full="<?php echo get_stylesheet_directory_uri(); ?>/image/nathalie-4.jpeg"></div>
         <div class="text-bottom-left">LE MENU</div>
         <div class="text-bottom-right">CATÉGORIE</div>
       </div>
+
 
       <div class="suggestion-item">
-        <a href="#">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/image/nathalie-5.jpeg" alt="Suggestion 2">
-        </a>
+        <img src="<?php echo get_stylesheet_directory_uri(); ?>/image/nathalie-5.jpeg" alt="Suggestion 2">
         <div class="overlay"></div>
-        <div class="icon-eye"></div>
-        <div class="icon-fullscreen"></div>
+
+        <a href="<?php echo get_permalink(get_page_by_title('Single Photo')->ID); ?>" aria-label="Voir la photo en détail">
+          <div class="icon-eye"></div>
+        </a>
+
+        <div class="icon-fullscreen" data-full="<?php echo get_stylesheet_directory_uri(); ?>/image/nathalie-5.jpeg"></div>
         <div class="text-bottom-left">LE MENU</div>
         <div class="text-bottom-right">CATÉGORIE</div>
       </div>
-
     </div>
   </section>
 
