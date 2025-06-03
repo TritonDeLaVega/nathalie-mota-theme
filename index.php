@@ -51,103 +51,53 @@
     </div>
 
     <div class="gallery-grid">
-        <div class="gallery-item">
-            <img src="<?php echo get_template_directory_uri(); ?>/image/nathalie-0.jpeg" alt="photo 0" />
-            <div class="overlay"></div>
+        <?php
+        // Requête pour récupérer les photos du CPT "photo"
+        $args = array(
+            'post_type'      => 'photo',
+            'posts_per_page' => 8, // nombre d’images à afficher (ajuste si besoin)
+            'orderby'        => 'date',
+            'order'          => 'DESC',
+            'post_status'    => 'publish',
+        );
+        $photos_query = new WP_Query($args);
 
-            <!-- Lien cliquable uniquement sur l'icône œil -->
-            <a href="<?php echo get_permalink(get_page_by_title('Single Photo')->ID); ?>">
-                <div class="icon-eye"></div>
-            </a>
-            <div class="icon-fullscreen" data-full="<?php echo get_template_directory_uri(); ?>/image/nathalie-0.jpeg"></div>
-            <div class="text-bottom-left">LE MENU</div>
-            <div class="text-bottom-right">CATÉGORIE</div>
-        </div>
-        <div class="gallery-item">
-            <img src="<?php echo get_template_directory_uri(); ?>/image/nathalie-1.jpeg" alt="photo 1" />
-            <div class="overlay"></div>
-
-            <!-- Lien cliquable uniquement sur l'icône œil -->
-            <a href="<?php echo get_permalink(get_page_by_title('Single Photo')->ID); ?>">
-                <div class="icon-eye"></div>
-            </a>
-            <div class="icon-fullscreen" data-full="<?php echo get_template_directory_uri(); ?>/image/nathalie-1.jpeg"></div>
-            <div class="text-bottom-left">LE MENU</div>
-            <div class="text-bottom-right">CATÉGORIE</div>
-        </div>
-        <div class="gallery-item">
-            <img src="<?php echo get_template_directory_uri(); ?>/image/nathalie-2.jpeg" alt="photo 2" />
-            <div class="overlay"></div>
-
-            <!-- Lien cliquable uniquement sur l'icône œil -->
-            <a href="<?php echo get_permalink(get_page_by_title('Single Photo')->ID); ?>">
-                <div class="icon-eye"></div>
-            </a>
-            <div class="icon-fullscreen" data-full="<?php echo get_template_directory_uri(); ?>/image/nathalie-2.jpeg"></div>
-            <div class="text-bottom-left">LE MENU</div>
-            <div class="text-bottom-right">CATÉGORIE</div>
-        </div>
-        <div class="gallery-item">
-            <img src="<?php echo get_template_directory_uri(); ?>/image/nathalie-3.jpeg" alt="photo 3" />
-            <div class="overlay"></div>
-
-            <!-- Lien cliquable uniquement sur l'icône œil -->
-            <a href="<?php echo get_permalink(get_page_by_title('Single Photo')->ID); ?>">
-                <div class="icon-eye"></div>
-            </a>
-            <div class="icon-fullscreen" data-full="<?php echo get_template_directory_uri(); ?>/image/nathalie-3.jpeg"></div>
-            <div class="text-bottom-left">LE MENU</div>
-            <div class="text-bottom-right">CATÉGORIE</div>
-        </div>
-        <div class="gallery-item">
-            <img src="<?php echo get_template_directory_uri(); ?>/image/nathalie-4.jpeg" alt="photo 4" />
-            <div class="overlay"></div>
-
-            <!-- Lien cliquable uniquement sur l'icône œil -->
-            <a href="<?php echo get_permalink(get_page_by_title('Single Photo')->ID); ?>">
-                <div class="icon-eye"></div>
-            </a>
-            <div class="icon-fullscreen" data-full="<?php echo get_template_directory_uri(); ?>/image/nathalie-4.jpeg"></div>
-            <div class="text-bottom-left">LE MENU</div>
-            <div class="text-bottom-right">CATÉGORIE</div>
-        </div>
-        <div class="gallery-item">
-            <img src="<?php echo get_template_directory_uri(); ?>/image/nathalie-5.jpeg" alt="photo 5" />
-            <div class="overlay"></div>
-
-            <!-- Lien cliquable uniquement sur l'icône œil -->
-            <a href="<?php echo get_permalink(get_page_by_title('Single Photo')->ID); ?>">
-                <div class="icon-eye"></div>
-            </a>
-            <div class="icon-fullscreen" data-full="<?php echo get_template_directory_uri(); ?>/image/nathalie-5.jpeg"></div>
-            <div class="text-bottom-left">LE MENU</div>
-            <div class="text-bottom-right">CATÉGORIE</div>
-        </div>
-        <div class="gallery-item">
-            <img src="<?php echo get_template_directory_uri(); ?>/image/nathalie-6.jpeg" alt="photo 6" />
-            <div class="overlay"></div>
-
-            <!-- Lien cliquable uniquement sur l'icône œil -->
-            <a href="<?php echo get_permalink(get_page_by_title('Single Photo')->ID); ?>">
-                <div class="icon-eye"></div>
-            </a>
-            <div class="icon-fullscreen" data-full="<?php echo get_template_directory_uri(); ?>/image/nathalie-6.jpeg"></div>
-            <div class="text-bottom-left">LE MENU</div>
-            <div class="text-bottom-right">CATÉGORIE</div>
-        </div>
-        <div class="gallery-item">
-            <img src="<?php echo get_template_directory_uri(); ?>/image/nathalie-7.jpeg" alt="photo 7" />
-            <div class="overlay"></div>
-
-            <!-- Lien cliquable uniquement sur l'icône œil -->
-            <a href="<?php echo get_permalink(get_page_by_title('Single Photo')->ID); ?>">
-                <div class="icon-eye"></div>
-            </a>
-
-            <div class="icon-fullscreen" data-full="<?php echo get_template_directory_uri(); ?>/image/nathalie-7.jpeg"></div>
-            <div class="text-bottom-left">LE MENU</div>
-            <div class="text-bottom-right">CATÉGORIE</div>
-        </div>
+        if ($photos_query->have_posts()) :
+            while ($photos_query->have_posts()) : $photos_query->the_post();
+                $img_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
+                $img_alt = get_post_meta(get_post_thumbnail_id(get_the_ID()), '_wp_attachment_image_alt', true);
+                $categories = get_the_terms(get_the_ID(), 'categorie');
+        ?>
+                <div class="gallery-item">
+                    <img src="<?php echo esc_url($img_url); ?>" alt="<?php echo esc_attr($img_alt); ?>" />
+                    <div class="overlay"></div>
+                    <!-- Lien cliquable uniquement sur l'icône œil -->
+                    <a href="<?php the_permalink(); ?>">
+                        <div class="icon-eye"></div>
+                    </a>
+                    <div class="icon-fullscreen" data-full="<?php echo esc_url($img_url); ?>"></div>
+                    <div class="text-bottom-left">
+                        <?php
+                        // Affiche le titre de l'image
+                        the_title();
+                        ?>
+                    </div>
+                    <div class="text-bottom-right">
+                        <?php
+                        // Affiche la première catégorie s’il existe
+                        if ($categories && !is_wp_error($categories)) {
+                            echo esc_html($categories[0]->name);
+                        }
+                        ?>
+                    </div>
+                </div>
+        <?php
+            endwhile;
+            wp_reset_postdata();
+        else :
+            echo '<p>Aucune photo trouvée.</p>';
+        endif;
+        ?>
     </div>
 
     <div class="load-more">
