@@ -3,13 +3,12 @@
 <!-- ✅ Image juste après le header -->
 <?php if (!is_page('Single Photo')) : ?>
     <?php
-    // Étape 1 : définir les critères de recherche
     $args = array(
-        'post_type'      => 'photo',       // CPT "photo"
-        'posts_per_page' => 1,             // Une seule photo
-        'orderby'        => 'rand',        // Tirée au hasard
-        'post_status'    => 'publish',     // Seulement les publiées
-        'fields'         => 'ids',         // On ne récupère que les IDs
+        'post_type'      => 'photo',
+        'posts_per_page' => 1,
+        'orderby'        => 'rand',
+        'post_status'    => 'publish',
+        'fields'         => 'ids',
         'tax_query'      => array(
             array(
                 'taxonomy' => 'format',
@@ -18,8 +17,6 @@
             ),
         ),
     );
-
-    // Étape 2 : exécuter la requête
     $random_photo = new WP_Query($args);
     $ids = $random_photo->posts;
 
@@ -30,10 +27,9 @@
     }
     ?>
 
-    <!-- ✅ Hero image + texte centré -->
     <div class="header-banner">
         <img src="<?php echo esc_url($hero_img_url); ?>" alt="<?php echo esc_attr($hero_img_alt); ?>" class="header-banner-image">
-        <div class="hero-text">PHOTOGRAPHE EVENT</div> <!-- ✅ Texte déplacé ici -->
+        <div class="hero-text">PHOTOGRAPHE EVENT</div>
     </div>
 <?php endif; ?>
 
@@ -52,51 +48,46 @@
 
     <div class="gallery-grid">
         <?php
-        // Requête pour récupérer les photos du CPT "photo"
         $args = array(
             'post_type'      => 'photo',
-            'posts_per_page' => 8, // nombre d’images à afficher (ajuste si besoin)
+            'posts_per_page' => 8,
             'orderby'        => 'date',
             'order'          => 'DESC',
             'post_status'    => 'publish',
         );
         $photos_query = new WP_Query($args);
 
+        $i = 0; // Compteur pour data-index
+
         if ($photos_query->have_posts()) :
             while ($photos_query->have_posts()) : $photos_query->the_post();
                 $img_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
                 $img_alt = get_post_meta(get_post_thumbnail_id(get_the_ID()), '_wp_attachment_image_alt', true);
                 $categories = get_the_terms(get_the_ID(), 'categorie');
+                $reference = get_post_meta(get_the_ID(), 'reference', true);
+                $cat_name = ($categories && !is_wp_error($categories)) ? $categories[0]->name : '';
         ?>
                 <div class="gallery-item">
                     <img src="<?php echo esc_url($img_url); ?>" alt="<?php echo esc_attr($img_alt); ?>" />
                     <div class="overlay"></div>
-                    <!-- Lien cliquable uniquement sur l'icône œil -->
                     <a href="<?php the_permalink(); ?>">
                         <div class="icon-eye"></div>
                     </a>
-                    <?php
-                    // Récupérer la référence (champ personnalisé)
-                    $reference = get_post_meta(get_the_ID(), 'reference', true);
-                    $cat_name = ($categories && !is_wp_error($categories)) ? $categories[0]->name : '';
-                    ?>
                     <div
                         class="icon-fullscreen"
                         data-full="<?php echo esc_url($img_url); ?>"
                         data-ref="<?php echo esc_attr($reference); ?>"
-                        data-cat="<?php echo esc_attr($cat_name); ?>"></div>
+                        data-cat="<?php echo esc_attr($cat_name); ?>"
+                        data-index="<?php echo $i; ?>"></div>
                     <div class="text-bottom-left">
                         <?php the_title(); ?>
                     </div>
                     <div class="text-bottom-right">
-                        <?php
-                        if ($categories && !is_wp_error($categories)) {
-                            echo esc_html($categories[0]->name);
-                        }
-                        ?>
+                        <?php echo esc_html($cat_name); ?>
                     </div>
                 </div>
         <?php
+                $i++;
             endwhile;
             wp_reset_postdata();
         else :
