@@ -4,15 +4,21 @@ document.addEventListener('DOMContentLoaded', function () {
     const lightboxImg = lightbox.querySelector('.lightbox-img');
     const fullscreenIcons = document.querySelectorAll('.icon-fullscreen');
     const closeBtn = lightbox.querySelector('.lightbox-close');
+    const refSpan = lightbox.querySelector('.lightbox-ref');
+    const catSpan = lightbox.querySelector('.lightbox-cat');
 
     // Ouvre la lightbox
     fullscreenIcons.forEach(icon => {
         icon.addEventListener('click', function (e) {
             const imageUrl = icon.getAttribute('data-full');
+            const ref = icon.getAttribute('data-ref') || '';
+            const cat = icon.getAttribute('data-cat') || '';
             lightboxImg.setAttribute('src', imageUrl);
-            lightbox.style.display = 'flex'; // Utilise flex pour le centrage
+            if (refSpan) refSpan.textContent = ref;
+            if (catSpan) catSpan.textContent = cat;
+            lightbox.style.display = 'flex';
             lightbox.setAttribute('aria-hidden', 'false');
-            document.body.classList.add('lightbox-open'); // Empêche le scroll du body
+            document.body.classList.add('lightbox-open');
         });
     });
 

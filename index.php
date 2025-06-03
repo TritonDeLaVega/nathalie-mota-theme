@@ -75,16 +75,21 @@
                     <a href="<?php the_permalink(); ?>">
                         <div class="icon-eye"></div>
                     </a>
-                    <div class="icon-fullscreen" data-full="<?php echo esc_url($img_url); ?>"></div>
+                    <?php
+                    // Récupérer la référence (champ personnalisé)
+                    $reference = get_post_meta(get_the_ID(), 'reference', true);
+                    $cat_name = ($categories && !is_wp_error($categories)) ? $categories[0]->name : '';
+                    ?>
+                    <div
+                        class="icon-fullscreen"
+                        data-full="<?php echo esc_url($img_url); ?>"
+                        data-ref="<?php echo esc_attr($reference); ?>"
+                        data-cat="<?php echo esc_attr($cat_name); ?>"></div>
                     <div class="text-bottom-left">
-                        <?php
-                        // Affiche le titre de l'image
-                        the_title();
-                        ?>
+                        <?php the_title(); ?>
                     </div>
                     <div class="text-bottom-right">
                         <?php
-                        // Affiche la première catégorie s’il existe
                         if ($categories && !is_wp_error($categories)) {
                             echo esc_html($categories[0]->name);
                         }
@@ -103,6 +108,7 @@
     <div class="load-more">
         <button>Charger plus</button>
     </div>
+
 </main>
 
 <?php get_footer(); ?>

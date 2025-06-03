@@ -1,9 +1,8 @@
 <?php
 
 /**
- * Template pour une photo individuelle
- * Template Name: Single Photo
- */
+ *Template pour une photo individuelle
+*/
 get_header(); ?>
 
 <main id="main-content" class="single-photo">

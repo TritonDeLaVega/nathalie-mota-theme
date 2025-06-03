@@ -21,9 +21,10 @@ get_template_part('template_parts/contact-modal');
             <button class="lightbox-prev" aria-label="Photo précédente">← Précédente</button>
             <div class="lightbox-img-wrapper">
                 <img src="" alt="" class="lightbox-img">
+                <!-- À placer dans le markup de la lightbox, par exemple -->
                 <div class="lightbox-meta">
-                    <span class="lightbox-ref">RÉFÉRENCE DE LA PHOTO</span>
-                    <span class="lightbox-cat">CATÉGORIE</span>
+                    <span class="lightbox-ref"></span>
+                    <span class="lightbox-cat"></span>
                 </div>
             </div>
             <button class="lightbox-next" aria-label="Photo suivante">Suivante →</button>

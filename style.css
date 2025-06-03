@@ -501,6 +501,11 @@ select {
     cursor: pointer;
     width: 160px;
 }
+.load-more button:hover {
+    background-color: #000;
+    color: #fff;
+    transition: background 0.3s, color 0.3s;
+}
 
 /* code pour single-photo.php */
 
