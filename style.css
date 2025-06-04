@@ -521,12 +521,17 @@ select {
     flex-wrap: wrap;
     gap: 2rem;
     margin-bottom: 8rem;
+    align-items: flex-end;
 }
 
 .photo-info {
     flex: 1;
     min-width: 280px;
-    max-height: 475px;
+    min-height: 475px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    
 }
 
 .photo-meta {
@@ -534,9 +539,9 @@ select {
 
 }
 
-.photo-info>*:not(.contact-section) {
-    margin-top: 26.5rem;
-}
+/* .photo-info>*:not(.contact-section) {
+    margin-top: 23rem;
+} */
 
 .photo-info h1 {
     font-family: 'Space Mono', monospace;
@@ -545,6 +550,9 @@ select {
     font-size: 66px;
     line-height: 58px;
     text-transform: uppercase;
+    white-space: normal; /* Permet le retour à la ligne */
+    word-break: break-word; /* Coupe si besoin */
+    max-width: 400px;
 }
 
 p {
@@ -563,6 +571,9 @@ p {
 /* bloc contenant l'image principale et la miniature */
 .photo-detail {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 /* image principale de la photo */
@@ -570,9 +581,14 @@ p {
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    align-self: flex-end;
     min-width: 300px;
+    margin-bottom: 0.8rem;
 }
-
+/* détection du format paysage de l'image */
+.photo-image.landscape {
+    /* margin-top: 28.5rem;  */
+}
 .photo-image img {
     width: 100%;
     height: auto;
@@ -590,8 +606,8 @@ p {
 }
 
 .lightbox-thumbnail img {
-    width: 20%;
-    height: auto;
+    width: 80px;
+    height: 80px;
     cursor: pointer;
 }
 
@@ -599,7 +615,7 @@ p {
 .thumbnail-arrows {
     display: flex;
     gap: 1rem;
-    margin-right: 2.5%;
+    margin-right: -0.5%;
     /* ajuste la valeur selon le rendu souhaité */
 }
 
@@ -622,30 +638,27 @@ p {
 
 .contact-section {
     position: relative;
-    margin-top: 1.2rem;
+    min-height: 60px; /* Ajuste selon ton design */
+    margin-top: auto;
     display: flex;
     align-items: center;
     gap: 2rem;
     padding-top: 2rem;
     padding-bottom: 2rem;
-    /* espace entre le texte et le bouton */
     border-top: 1px solid #000;
-    /* Trait au-dessus */
     border-bottom: 1px solid #000;
-    /* Trait en dessous */
 }
 
 /* Trait prolongé de celui du bas, vers la droite */
 .contact-section::after {
     content: '';
     position: absolute;
-    bottom: -0.9px;
-    left: 100%;
-    /* commence juste après la section */
+    bottom: 0;
+    left: 94.5%;
     width: 616px;
-    /* ajuste cette valeur pour la longueur du prolongement */
     height: 1px;
     background-color: #000;
+   
 }
 
 .contact-section button {

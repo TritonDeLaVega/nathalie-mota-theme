@@ -117,6 +117,47 @@ get_header(); ?>
     </div>
   </section>
 
+  <?php
+  // Récupérer toutes les photos du CPT
+  $all_photos = get_posts([
+    'post_type' => 'photo',
+    'posts_per_page' => -1,
+    'orderby' => 'date',
+    'order' => 'DESC',
+    'post_status' => 'publish',
+  ]);
+
+  $photos_data = [];
+  $current_id = get_the_ID();
+  $current_index = 0;
+
+  foreach ($all_photos as $i => $photo) {
+    $categorie = get_the_terms($photo->ID, 'categorie');
+    $format = get_the_terms($photo->ID, 'format');
+    $photos_data[] = [
+        'id' => $photo->ID,
+        'title' => get_the_title($photo->ID),
+        'img' => get_the_post_thumbnail_url($photo->ID, 'large'),
+        'thumb' => get_the_post_thumbnail_url($photo->ID, 'thumbnail'),
+        'reference' => get_post_meta($photo->ID, 'reference', true),
+        'categorie' => ($categorie && !is_wp_error($categorie)) ? $categorie[0]->name : '',
+        'format' => ($format && !is_wp_error($format)) ? $format[0]->name : '',
+        'type' => get_post_meta($photo->ID, 'type', true),
+        'annee' => get_post_meta($photo->ID, 'annee', true),
+    ];
+    if ($photo->ID == $current_id) {
+        $current_index = $i;
+    }
+  }
+  ?>
+  <script>
+    window.photoGallery = <?php echo json_encode([
+                            'photos' => $photos_data,
+                            'currentIndex' => $current_index
+                          ]); ?>;
+  </script>
+
+
 </main>
 
 <?php get_footer(); ?>

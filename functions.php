@@ -79,3 +79,9 @@ function mota_enqueue_load_more_script()
     }
 }
 add_action('wp_enqueue_scripts', 'mota_enqueue_load_more_script');
+
+// enlève le &rsquo; des titres
+// pour éviter les problèmes de guillemets dans les titres
+add_filter('the_title', function($title) {
+       return str_replace('&rsquo;', "'", $title);
+   });
