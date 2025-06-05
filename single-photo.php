@@ -27,11 +27,8 @@ get_header(); ?>
         <p><strong>Type :</strong> <?php echo esc_html($type); ?></p>
         <p><strong>Année :</strong> <?php echo esc_html($annee); ?></p>
       </div>
+      <div class="info-separator"></div>
 
-      <div class="contact-section">
-        <p>Cette photo vous intéresse ?</p>
-        <button class="open-contact-modal">Contact</button>
-      </div>
     </div>
 
     <section class="photo-detail">
@@ -43,7 +40,17 @@ get_header(); ?>
           echo '<img src="' . esc_url($img_url) . '" alt="' . esc_attr($img_alt) . '">';
         }
         ?>
-        <div class="lightbox-thumbnail">
+        
+      </div>
+    </section>
+  </div>
+  <div class="contact-section-container">
+    <div class="contact-section">
+      <div class="contact-section-content">
+        <p>Cette photo vous intéresse ?</p>
+        <button class="open-contact-modal">Contact</button>
+      </div>
+      <div class="lightbox-thumbnail">
           <?php
           // Affiche la miniature (par exemple la même image ou une autre taille)
           if (has_post_thumbnail()) {
@@ -56,8 +63,7 @@ get_header(); ?>
             <button class="arrow-right" aria-label="Suivant">→</button>
           </div>
         </div>
-      </div>
-    </section>
+    </div>
   </div>
 
   <section class="photo-suggestions">
@@ -135,18 +141,18 @@ get_header(); ?>
     $categorie = get_the_terms($photo->ID, 'categorie');
     $format = get_the_terms($photo->ID, 'format');
     $photos_data[] = [
-        'id' => $photo->ID,
-        'title' => get_the_title($photo->ID),
-        'img' => get_the_post_thumbnail_url($photo->ID, 'large'),
-        'thumb' => get_the_post_thumbnail_url($photo->ID, 'thumbnail'),
-        'reference' => get_post_meta($photo->ID, 'reference', true),
-        'categorie' => ($categorie && !is_wp_error($categorie)) ? $categorie[0]->name : '',
-        'format' => ($format && !is_wp_error($format)) ? $format[0]->name : '',
-        'type' => get_post_meta($photo->ID, 'type', true),
-        'annee' => get_post_meta($photo->ID, 'annee', true),
+      'id' => $photo->ID,
+      'title' => get_the_title($photo->ID),
+      'img' => get_the_post_thumbnail_url($photo->ID, 'large'),
+      'thumb' => get_the_post_thumbnail_url($photo->ID, 'thumbnail'),
+      'reference' => get_post_meta($photo->ID, 'reference', true),
+      'categorie' => ($categorie && !is_wp_error($categorie)) ? $categorie[0]->name : '',
+      'format' => ($format && !is_wp_error($format)) ? $format[0]->name : '',
+      'type' => get_post_meta($photo->ID, 'type', true),
+      'annee' => get_post_meta($photo->ID, 'annee', true),
     ];
     if ($photo->ID == $current_id) {
-        $current_index = $i;
+      $current_index = $i;
     }
   }
   ?>

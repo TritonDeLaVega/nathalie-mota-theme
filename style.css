@@ -204,6 +204,7 @@ main,
 .hidden {
     display: none;
 }
+
 .lightbox {
     position: fixed;
     top: 0;
@@ -284,7 +285,7 @@ main,
 .mobile-nav.visible {
     transform: translateY(0);
     opacity: 1;
-   
+
 }
 
 
@@ -403,11 +404,13 @@ select {
     background: transparent;
     transition: background 0.3s ease;
     z-index: 5;
-    
+
 }
+
 .icon-fullscreen {
     cursor: pointer;
 }
+
 .gallery-item .overlay::before {
     content: "";
     position: absolute;
@@ -421,6 +424,7 @@ select {
     transition: opacity 0.3s ease;
     z-index: 6;
 }
+
 .gallery-item .icon-eye,
 .gallery-item .icon-fullscreen {
     position: absolute;
@@ -458,7 +462,7 @@ select {
     opacity: 0;
     transition: opacity 0.3s ease;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
-    
+
 }
 
 .gallery-item .text-bottom-left {
@@ -501,6 +505,7 @@ select {
     cursor: pointer;
     width: 160px;
 }
+
 .load-more button:hover {
     background-color: #000;
     color: #fff;
@@ -520,7 +525,6 @@ select {
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
-    margin-bottom: 8rem;
     align-items: flex-end;
 }
 
@@ -531,17 +535,19 @@ select {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    
-}
 
+}
+.info-separator {
+    width: 100%;
+    height: 1px;
+    background: #000;
+}
 .photo-meta {
-    margin-bottom: 0px;
+    margin-bottom: 60px;
 
 }
 
-/* .photo-info>*:not(.contact-section) {
-    margin-top: 23rem;
-} */
+
 
 .photo-info h1 {
     font-family: 'Space Mono', monospace;
@@ -550,17 +556,21 @@ select {
     font-size: 66px;
     line-height: 58px;
     text-transform: uppercase;
-    white-space: normal; /* Permet le retour à la ligne */
-    word-break: break-word; /* Coupe si besoin */
+    white-space: normal;
+    /* Permet le retour à la ligne */
+    word-break: break-word;
+    /* Coupe si besoin */
     max-width: 400px;
 }
 
 p {
-    margin-bottom: 2.2rem;
+    margin: 0;
     font-family: 'Space Mono', monospace;
     font-weight: 400;
 }
-
+.photo-meta p {
+    margin-bottom: 2.2rem;
+}
 /* section des suggestions */
 .photo-suggestions h2 {
     font-family: 'Poppins', sans-serif;
@@ -583,12 +593,14 @@ p {
     align-items: stretch;
     align-self: flex-end;
     min-width: 300px;
-    margin-bottom: 0.8rem;
+    margin-bottom: 2.3rem;
 }
+
 /* détection du format paysage de l'image */
 .photo-image.landscape {
     /* margin-top: 28.5rem;  */
 }
+
 .photo-image img {
     width: 100%;
     height: auto;
@@ -607,7 +619,7 @@ p {
 
 .lightbox-thumbnail img {
     width: 80px;
-    height: 80px;
+    height: 70px;
     cursor: pointer;
 }
 
@@ -616,7 +628,7 @@ p {
     display: flex;
     gap: 1rem;
     margin-right: -0.5%;
-    /* ajuste la valeur selon le rendu souhaité */
+    margin-top: -15px;
 }
 
 /* Style des flèches */
@@ -638,30 +650,42 @@ p {
 
 .contact-section {
     position: relative;
-    min-height: 60px; /* Ajuste selon ton design */
-    margin-top: auto;
+    min-height: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
     display: flex;
     align-items: center;
     gap: 2rem;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    border-top: 1px solid #000;
+    padding-bottom: 0;
     border-bottom: 1px solid #000;
+    box-sizing: border-box;
+    background: #fff;
 }
 
-/* Trait prolongé de celui du bas, vers la droite */
-.contact-section::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 94.5%;
-    width: 616px;
-    height: 1px;
-    background-color: #000;
-   
+.contact-section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+    background: transparent;
+    margin-bottom: 30px;
+}
+.contact-section-content {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    padding-left: 0;
+    padding-right: 0;
 }
 
-.contact-section button {
+
+.contact-section button.open-contact-modal {
     background-color: #ccc;
     border: none;
     padding: 0.7rem 6rem;
@@ -714,7 +738,7 @@ p {
     background: transparent;
     transition: background 0.3s ease;
     z-index: 5;
-    
+
 }
 
 .suggestion-item .overlay::before {
@@ -768,7 +792,7 @@ p {
     opacity: 0;
     transition: opacity 0.3s ease;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
-    
+
 }
 
 .suggestion-item .text-bottom-left {
@@ -794,18 +818,21 @@ p {
 body.lightbox-open {
     overflow: hidden;
 }
+
 .lightbox {
     position: fixed;
     inset: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0,0,0,0.85);
+    background: rgba(0, 0, 0, 0.85);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
-    overflow: hidden; /* Empêche le scroll dans la lightbox */
+    overflow: hidden;
+    /* Empêche le scroll dans la lightbox */
 }
+
 .lightbox-content {
     position: relative;
     max-width: min(978px, 95vw);
@@ -829,10 +856,11 @@ body.lightbox-open {
     height: auto;
     object-fit: contain;
     margin: 0 auto;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.15);
     border-radius: 6px;
     background: transparent;
 }
+
 .lightbox-img-wrapper {
     display: flex;
     flex-direction: column;
@@ -842,6 +870,7 @@ body.lightbox-open {
     min-width: 0;
     margin: 0 auto;
 }
+
 .lightbox-close {
     position: absolute;
     top: -5rem;
@@ -853,6 +882,7 @@ body.lightbox-open {
     cursor: pointer;
     z-index: 10;
 }
+
 .lightbox-center {
     display: flex;
     flex-direction: row;
@@ -890,7 +920,7 @@ body.lightbox-open {
     font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     font-weight: 500;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
     letter-spacing: 0.05em;
     margin: 1.2rem 0 0 0;
     padding: 0 0.5rem;
