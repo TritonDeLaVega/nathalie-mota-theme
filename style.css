@@ -40,9 +40,12 @@ Version: 1.0
 
 html,
 body {
-    height: 100%;
+    width: 100%;
+    min-width: 100vw;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
     font-family: 'Poppins', 'Arial', sans-serif;
 }
 
@@ -514,12 +517,23 @@ select {
 
 /* code pour single-photo.php */
 
-.single-photo {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: auto;
+main.single-photo {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 2rem 0;
+    box-sizing: border-box;
+    flex: 1 0 auto;
 }
-
+.main-inner-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+    /* Ajoute un padding horizontal si tu veux respirer sur petits écrans */
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
 /* Nouveau wrapper parent pour organiser les deux blocs côte à côte */
 .photo-detail-wrapper {
     display: flex;
