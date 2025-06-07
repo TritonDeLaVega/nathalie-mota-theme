@@ -96,25 +96,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Fonction pour détecter une image paysage
-    const photoImage = document.querySelector('.photo-image img');
-    if (!photoImage) return;
-
-    photoImage.addEventListener('load', function () {
-        const ratio = photoImage.naturalWidth / photoImage.naturalHeight;
-        const wrapper = photoImage.closest('.photo-image');
-        if (ratio > 1.1) { // Paysage (ajuste le seuil si besoin)
-            wrapper.classList.add('landscape');
-        } else {
-            wrapper.classList.remove('landscape');
-        }
-    });
-
-    // Si l'image est déjà chargée (cache)
-    if (photoImage.complete) {
-        photoImage.dispatchEvent(new Event('load'));
-    }
-
     // Navigation de la miniature de la page single-photo.
     if (!window.photoGallery) return;
 
@@ -133,6 +114,37 @@ document.addEventListener('DOMContentLoaded', function () {
     const formatElem = document.querySelector('.photo-meta p:nth-child(4)');
     const typeElem = document.querySelector('.photo-meta p:nth-child(5)');
     const anneeElem = document.querySelector('.photo-meta p:nth-child(6)');
+
+    function updateSuggestions() {
+        const suggestionsGrid = document.querySelector('.suggestions-grid');
+        if (!suggestionsGrid) return;
+
+        const currentCat = photos[index].categorie;
+        const currentId = photos[index].id;
+
+        // Filtrer les photos de la même catégorie, hors photo courante
+        const suggestions = photos.filter(
+            photo => photo.categorie === currentCat && photo.id !== currentId
+        ).slice(0, 2); // Limite à 2 suggestions
+
+        // Générer le HTML
+        suggestionsGrid.innerHTML = suggestions.map(photo => `
+            <div class="suggestion-item">
+                <img src="${photo.img}" alt="${photo.title}">
+                <div class="overlay"></div>
+                <a href="/photo/${photo.id}" aria-label="Voir la photo en détail">
+                    <div class="icon-eye"></div>
+                </a>
+                <div class="icon-fullscreen"
+                    data-full="${photo.img}"
+                    data-ref="${photo.reference}"
+                    data-cat="${photo.categorie}">
+                </div>
+                <div class="text-bottom-left">${photo.title}</div>
+                <div class="text-bottom-right">${photo.categorie}</div>
+            </div>
+        `).join('');
+    }
 
     function updateImages() {
         if (!photos[index]) return;
@@ -153,17 +165,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Met à jour dynamiquement la référence sur le bouton contact
         updateContactButtonRef(photos[index].reference);
+        // Met à jour les suggestions
+        updateSuggestions();
+    }
 
-        // Détection paysage/portrait après chargement de la nouvelle image
-        mainImg.addEventListener('load', function detectOrientation() {
-            const ratio = mainImg.naturalWidth / mainImg.naturalHeight;
-            const wrapper = mainImg.closest('.photo-image');
-            if (ratio > 1.1) {
-                wrapper.classList.add('landscape');
-            } else {
-                wrapper.classList.remove('landscape');
-            }
-            mainImg.removeEventListener('load', detectOrientation);
+    // Survol flèche gauche : aperçu miniature précédente
+    if (thumbImg && leftBtn) {
+        leftBtn.addEventListener('mouseenter', function () {
+            const prevIndex = (index - 1 + photos.length) % photos.length;
+            thumbImg.src = photos[prevIndex].thumb;
+            thumbImg.alt = 'Miniature de ' + photos[prevIndex].title;
+        });
+        leftBtn.addEventListener('mouseleave', function () {
+            thumbImg.src = photos[index].thumb;
+            thumbImg.alt = 'Miniature de ' + photos[index].title;
+        });
+    }
+    // Survol flèche droite : aperçu miniature suivante
+    if (thumbImg && rightBtn) {
+        rightBtn.addEventListener('mouseenter', function () {
+            const nextIndex = (index + 1) % photos.length;
+            thumbImg.src = photos[nextIndex].thumb;
+            thumbImg.alt = 'Miniature de ' + photos[nextIndex].title;
+        });
+        rightBtn.addEventListener('mouseleave', function () {
+            thumbImg.src = photos[index].thumb;
+            thumbImg.alt = 'Miniature de ' + photos[index].title;
         });
     }
 
@@ -177,9 +204,4 @@ document.addEventListener('DOMContentLoaded', function () {
         updateImages();
     });
 
-    // Optionnel : clic sur la miniature = revenir à la photo courante initiale
-    thumbImg?.addEventListener('click', function () {
-        index = currentIndex;
-        updateImages();
-    });
 });

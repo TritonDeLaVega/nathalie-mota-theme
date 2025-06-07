@@ -610,11 +610,6 @@ p {
     margin-bottom: 0;
 }
 
-/* détection du format paysage de l'image */
-.photo-image.landscape {
-    /* margin-top: 28.5rem;  */
-}
-
 .photo-image img {
     width: 100%;
     height: auto;
