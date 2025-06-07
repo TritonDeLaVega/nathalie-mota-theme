@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const links = mobileNav.querySelectorAll('a');
 
         burger.addEventListener('click', () => {
-            console.log('Burger menu cliqué');
             const isVisible = mobileNav.classList.contains('visible');
             if (isVisible) {
                 mobileNav.classList.remove('visible');
@@ -25,15 +24,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
         links.forEach(link => {
             link.addEventListener('click', (e) => {
-                console.log(`Lien du menu mobile cliqué : ${link.getAttribute('href')}`);
                 const target = link.getAttribute('href');
-
                 if (target === '#contact' || link.classList.contains('open-contact-modal')) {
                     e.preventDefault();
-                    console.log('Ouverture de la modale depuis un lien du menu mobile');
                     openContactModal();
                 }
-
                 mobileNav.classList.remove('visible');
                 mobileNav.classList.add('hidden');
                 burger.classList.remove('open');
@@ -44,7 +39,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Fonction pour ouvrir la modale
     function openContactModal() {
-        console.log('Fonction openContactModal() appelée');
         const modal = document.getElementById('contact-modal');
         if (modal) {
             modal.classList.add('visible');
@@ -53,27 +47,50 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Fonction pour fermer la modale
     function closeContactModal() {
-        console.log('Fonction closeContactModal() appelée');
         const modal = document.getElementById('contact-modal');
         if (modal) {
             modal.classList.remove('visible');
         }
     }
 
+    // Fonction pour remplir le champ RÉF. PHOTO dans la modale
+    function setContactModalRef(ref) {
+        setTimeout(() => {
+            const refInput = document.getElementById('ref-photo');
+            if (refInput) {
+                refInput.value = ref || '';
+            }
+        }, 100);
+    }
+
+    // Fonction pour mettre à jour dynamiquement la référence sur le bouton contact
+    function updateContactButtonRef(newRef) {
+        const contactBtn = document.querySelector('.open-contact-modal');
+        if (contactBtn) {
+            contactBtn.setAttribute('data-ref', newRef || '');
+        }
+    }
+
     document.addEventListener('click', function (e) {
         const target = e.target;
 
+        // Clic sur le bouton de la section contact de la page single-photo.php
         if (target.closest('.open-contact-modal')) {
             e.preventDefault();
-            console.log('Clique sur élément .open-contact-modal');
+            // Récupère la référence de la photo courante dans le tableau JS
+            let ref = '';
+            if (window.photoGallery && window.photoGallery.photos && typeof index !== 'undefined') {
+                ref = window.photoGallery.photos[index]?.reference || '';
+            }
+            setContactModalRef(ref);
             openContactModal();
         }
 
+        // Fermer la modale si clic en dehors du contenu
         const modal = document.getElementById('contact-modal');
         if (modal && modal.classList.contains('visible')) {
             const modalContent = modal.querySelector('.modal-content');
             if (target === modal && !modalContent.contains(e.target)) {
-                console.log('Clic en dehors de la modale, fermeture');
                 closeContactModal();
             }
         }
@@ -133,6 +150,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (formatElem) formatElem.innerHTML = '<strong>Format :</strong> ' + (photos[index].format || '');
         if (typeElem) typeElem.innerHTML = '<strong>Type :</strong> ' + (photos[index].type || '');
         if (anneeElem) anneeElem.innerHTML = '<strong>Année :</strong> ' + (photos[index].annee || '');
+
+        // Met à jour dynamiquement la référence sur le bouton contact
+        updateContactButtonRef(photos[index].reference);
 
         // Détection paysage/portrait après chargement de la nouvelle image
         mainImg.addEventListener('load', function detectOrientation() {

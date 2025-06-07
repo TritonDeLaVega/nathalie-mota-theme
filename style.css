@@ -641,7 +641,7 @@ p {
 .thumbnail-arrows {
     display: flex;
     gap: 1rem;
-    margin-right: -0.5%;
+    margin-right: -5%;
     margin-top: -15px;
 }
 

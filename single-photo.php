@@ -49,7 +49,7 @@ get_header(); ?>
       <div class="contact-section">
         <div class="contact-section-content">
           <p>Cette photo vous intéresse ?</p>
-          <button class="open-contact-modal">Contact</button>
+          <button class="open-contact-modal" data-ref="<?php echo esc_attr($reference); ?>">Contact</button>
         </div>
         <div class="lightbox-thumbnail">
             <?php
