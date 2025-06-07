@@ -1,4 +1,5 @@
 <?php
+
 // Enqueue Google Fonts and custom styles/scripts
 function mota_enqueue_assets()
 {
@@ -6,15 +7,9 @@ function mota_enqueue_assets()
     wp_enqueue_style('mota-style', get_stylesheet_uri());
     wp_enqueue_style('modal-style', get_template_directory_uri() . '/css/modal.css');
 
-    // $script_path = get_template_directory() . '/js/scripts.js';
-    // $script_version = file_exists($script_path) ? filemtime($script_path) : false;
     wp_enqueue_script('mota-lightbox', get_template_directory_uri() . '/js/lightbox.js', array('jquery'), '1.0', true);
-    // wp_enqueue_script('mota-script', get_template_directory_uri() . '/js/scripts.js', array(), $script_version, true);
     wp_enqueue_script('mota-script', get_template_directory_uri() . '/js/scripts.js', array('jquery'), '1.0', true);
 }
-
-
-
 add_action('wp_enqueue_scripts', 'mota_enqueue_assets');
 
 // Déclarer le menu principal
@@ -27,19 +22,45 @@ add_action('after_setup_theme', 'mota_register_menus');
 add_filter('wpcf7_autop_or_not', '__return_false');
 add_theme_support('post-thumbnails');
 
+// ✅ API REST personnalisée avec filtres dynamiques et reset si aucun filtre
 add_action('rest_api_init', function () {
     register_rest_route('nathalie-mota/v1', '/photos/', [
         'methods' => 'GET',
         'callback' => function ($request) {
             $paged = $request->get_param('paged') ?: 1;
+            $categorie = $request->get_param('categorie');
+            $format = $request->get_param('format');
+            $order = $request->get_param('order') ?: 'DESC';
+
             $args = [
                 'post_type'      => 'photo',
                 'posts_per_page' => 8,
                 'paged'          => $paged,
                 'orderby'        => 'date',
-                'order'          => 'DESC',
+                'order'          => $order,
                 'post_status'    => 'publish',
             ];
+
+            // Ajout des filtres seulement si au moins un est sélectionné
+            $tax_query = [];
+            if (!empty($categorie)) {
+                $tax_query[] = [
+                    'taxonomy' => 'categorie',
+                    'field'    => 'slug',
+                    'terms'    => $categorie,
+                ];
+            }
+            if (!empty($format)) {
+                $tax_query[] = [
+                    'taxonomy' => 'format',
+                    'field'    => 'slug',
+                    'terms'    => $format,
+                ];
+            }
+            if (!empty($tax_query)) {
+                $args['tax_query'] = $tax_query;
+            }
+
             $query = new WP_Query($args);
             $photos = [];
             if ($query->have_posts()) {
@@ -56,7 +77,7 @@ add_action('rest_api_init', function () {
                         'img_url'   => $img_url,
                         'img_alt'   => $img_alt,
                         'category'  => $category,
-                        'reference' => $reference, // Ajoute la référence ici
+                        'reference' => $reference,
                     ];
                 }
                 wp_reset_postdata();
@@ -66,22 +87,8 @@ add_action('rest_api_init', function () {
         'permission_callback' => '__return_true',
     ]);
 });
-function mota_enqueue_load_more_script()
-{
-    if (is_front_page() || is_home() || is_post_type_archive('photo')) {
-        wp_enqueue_script(
-            'mota-load-more',
-            get_template_directory_uri() . '/js/load-more.js',
-            array(),
-            filemtime(get_template_directory() . '/js/load-more.js'),
-            true
-        );
-    }
-}
-add_action('wp_enqueue_scripts', 'mota_enqueue_load_more_script');
 
 // enlève le &rsquo; des titres
-// pour éviter les problèmes de guillemets dans les titres
 add_filter('the_title', function($title) {
-       return str_replace('&rsquo;', "'", $title);
-   });
+    return str_replace('&rsquo;', "'", $title);
+});

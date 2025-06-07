@@ -504,7 +504,7 @@ select {
     border: none;
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
-    border-radius: 6px;
+    border-radius: 3px;
     cursor: pointer;
     width: 160px;
 }
@@ -699,8 +699,14 @@ p {
     border: none;
     padding: 0.7rem 6rem;
     cursor: pointer;
+    border-radius: 3px;
 }
+.contact-section button.open-contact-modal:hover {
+    background-color: #000;
+    color: #fff;
+    transition: background 0.3s, color 0.3s;
 
+}
 
 .photo-suggestions h2 {
     font-size: 1rem;
