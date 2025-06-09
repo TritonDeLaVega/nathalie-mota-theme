@@ -392,6 +392,8 @@ select {
     height: 450px;
     object-fit: cover;
     display: block;
+    max-width: 100%;
+    min-width: 0;
     border-radius: 0;
     transition: filter 0.3s ease;
     position: relative;
@@ -525,6 +527,7 @@ main.single-photo {
     box-sizing: border-box;
     flex: 1 0 auto;
 }
+
 .main-inner-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -534,6 +537,7 @@ main.single-photo {
     padding-left: 1rem;
     padding-right: 1rem;
 }
+
 /* Nouveau wrapper parent pour organiser les deux blocs côte à côte */
 .photo-detail-wrapper {
     display: flex;
@@ -551,11 +555,13 @@ main.single-photo {
     justify-content: flex-end;
 
 }
+
 .info-separator {
     width: 100%;
     height: 1px;
     background: #000;
 }
+
 .photo-meta {
     margin-bottom: 60px;
 
@@ -582,9 +588,11 @@ p {
     font-family: 'Space Mono', monospace;
     font-weight: 400;
 }
+
 .photo-meta p {
     margin-bottom: 2.2rem;
 }
+
 /* section des suggestions */
 .photo-suggestions h2 {
     font-family: 'Poppins', sans-serif;
@@ -680,6 +688,7 @@ p {
     background: transparent;
     margin-bottom: 30px;
 }
+
 .contact-section-content {
     padding-top: 40px;
     padding-bottom: 40px;
@@ -701,6 +710,7 @@ p {
     cursor: pointer;
     border-radius: 3px;
 }
+
 .contact-section button.open-contact-modal:hover {
     background-color: #000;
     color: #fff;
@@ -980,13 +990,21 @@ body.lightbox-open {
 
     .filters select {
         grid-column: auto !important;
-        width: calc(100% - 2rem);
+        min-width: 180px;
+        max-width: 220px;
+        height: 48px;
+        font-size: 1rem;
+        box-sizing: border-box;
         margin: 0.5rem 1rem;
     }
 
     /* ===== Grille de galerie ===== */
     .gallery-grid {
-        grid-template-columns: 1fr;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        width: 100%;
+        min-height: 500px;
     }
 
     .gallery-grid img {
