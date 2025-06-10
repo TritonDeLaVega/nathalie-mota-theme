@@ -325,7 +325,7 @@ main,
     width: 100%;
     box-sizing: border-box;
 }
-
+/* ===== filtres natifs ===== */
 .filters {
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
@@ -374,6 +374,48 @@ select {
 .filters select:nth-child(3) {
     grid-column: 4 / 5;
     /* Trier par */
+}
+
+/* Personnalisation Choices.js pour les filtres */
+.custom-choices .choices__inner {
+    border: 1px solid #000;
+    border-radius: 4px;
+    background: #fff;
+    min-height: 48px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.custom-choices.is-open .choices__inner,
+.custom-choices.is-focused .choices__inner {
+    border-color: #215AFF !important;
+    /* 1. Bordure bleue quand ouvert/focus */
+}
+
+.custom-choices .choices__list--dropdown .choices__item--selectable {
+    transition: background 0.2s;
+}
+
+.custom-choices .choices__list--dropdown .choices__item--selectable:hover {
+    background-color: #FFD6D6 !important;
+    /* 2. Survol */
+}
+
+.custom-choices .choices__list--dropdown .choices__item--selectable.is-highlighted {
+    background-color: #FE5858 !important;
+    /* 3. Focus */
+}
+
+.custom-choices .choices__list--dropdown .choices__item--selectable:active {
+    background-color: #E00000 !important;
+    /* 4. Clic */
+    color: #fff !important;
+}
+
+/* Pour garder la mise en page grid */
+.filters .choices {
+    width: 100%;
 }
 
 .gallery-grid {
