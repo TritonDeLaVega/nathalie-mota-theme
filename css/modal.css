@@ -20,6 +20,7 @@
     display: inline-block;
     max-width: 90vw;
     box-sizing: border-box;
+    transform: scale(0.8); /* Réduction uniforme */
 }
 
 #contact-modal .modal-content {
