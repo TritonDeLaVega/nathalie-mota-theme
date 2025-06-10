@@ -325,111 +325,127 @@ main,
     width: 100%;
     box-sizing: border-box;
 }
-/* ===== filtres natifs ===== */
+
+/* ===== Filtres grille ===== */
 .filters {
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    /* 4 colonnes égales */
     gap: 1rem;
     width: 100%;
     margin-bottom: 2rem;
+    position: relative;
+    z-index: 10;
 }
 
-select {
-    font-family: 'Poppins', sans-serif !important;
-    font-size: 0.8rem !important;
+/* Placement précis */
+.filters .custom-choices[data-filter="categorie"] { grid-column: 1 / 2; }
+.filters .custom-choices[data-filter="format"]    { grid-column: 2 / 3; }
+.filters .custom-choices[data-filter="order"]     { grid-column: 4 / 5; }
+
+/* Style de base Choices.js */
+.filters .custom-choices {
+    width: 100%;
+    align-self: center; /* Assurer un alignement uniforme */
+    position: relative;
+    min-width: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center; /* Alignement vertical homogène */
 }
 
-
-
-.filters select {
-    padding: 0.6rem 2.5rem 0.6rem 1rem;
-    /* espace à droite pour éloigner le chevron */
-    border: 1px solid #000;
-    border-radius: 4px;
-    font-size: 1rem;
-    background-color: #fff;
-    /* fond blanc pur*/
-    appearance: auto;
-    -webkit-appearance: auto;
-    -moz-appearance: auto;
+.choices[data-type*=select-one] .choices__inner {
+    padding-bottom: 0;
+}
+.choices__list--single {
+    display: inline-block;
+    padding: 4px 4px 4px 4px;
+    width: 100%;
 }
 
-
-
-
-/* Disposition précise */
-.filters select:nth-child(1) {
-    grid-column: 1 / 2;
-    /* Catégories */
-}
-
-.filters select:nth-child(2) {
-    grid-column: 2 / 3;
-    /* Formats */
-}
-
-.filters select:nth-child(3) {
-    grid-column: 4 / 5;
-    /* Trier par */
-}
-
-/* Personnalisation Choices.js pour les filtres */
 .custom-choices .choices__inner {
     border: 1px solid #000;
     border-radius: 4px;
     background: #fff;
-    min-height: 48px;
+    min-height: 35px;
+    padding: 0.6rem 2.5rem 0.6rem 1rem;
     font-family: 'Poppins', sans-serif;
     font-size: 1rem;
-    transition: border-color 0.2s;
+    color: #000 !important;
+    box-sizing: border-box;
+    align-items: center;
+    display: flex;
 }
 
+/* Suppression de la flèche custom pour éviter le désalignement */
+.custom-choices .choices__inner::after {
+    display: none;
+}
+
+/* Placeholder noir */
+.choices__placeholder {
+    color: #000 !important;
+    opacity: 1 !important;
+}
+
+/* Bordure focus */
 .custom-choices.is-open .choices__inner,
 .custom-choices.is-focused .choices__inner {
     border-color: #215AFF !important;
-    /* 1. Bordure bleue quand ouvert/focus */
 }
 
+/* Dropdown positionné juste en-dessous */
+.custom-choices .choices__list--dropdown,
+.custom-choices .choices__list[aria-expanded] {
+    z-index: 1000 !important;
+    position: absolute !important;
+    top: 100% !important;
+    margin-top: 0 !important;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #000;
+    border-radius: 0 0 4px 4px;
+}
+
+/* Dropdown items */
 .custom-choices .choices__list--dropdown .choices__item--selectable {
+    color: #000 !important;
+    background: #fff;
     transition: background 0.2s;
 }
-
 .custom-choices .choices__list--dropdown .choices__item--selectable:hover {
     background-color: #FFD6D6 !important;
-    /* 2. Survol */
 }
-
 .custom-choices .choices__list--dropdown .choices__item--selectable.is-highlighted {
     background-color: #FE5858 !important;
-    /* 3. Focus */
 }
-
-.custom-choices .choices__list--dropdown .choices__item--selectable:active {
+.custom-choices .choices__list--dropdown .choices__item--selectable:active,
+.custom-choices .choices__list--dropdown .choices__item--selectable.is-selected {
     background-color: #E00000 !important;
-    /* 4. Clic */
     color: #fff !important;
 }
 
-/* Pour garder la mise en page grid */
-.filters .choices {
-    width: 100%;
-}
 
+/* Galerie */
 .gallery-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
     width: 100%;
+    position: relative;
+    z-index: 1;
 }
 
-/* Chaque item a un contexte de position */
 .gallery-item {
     position: relative;
     overflow: hidden;
 }
+
+
+
+
 
 .gallery-item img {
     width: 100%;

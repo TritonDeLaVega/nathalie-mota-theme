@@ -1,21 +1,21 @@
 document.addEventListener('DOMContentLoaded', function () {
     const selects = [
-        document.getElementById('filter-categorie'),
-        document.getElementById('filter-format'),
-        document.getElementById('filter-order')
+        {el: document.getElementById('filter-categorie'), key: 'categorie'},
+        {el: document.getElementById('filter-format'), key: 'format'},
+        {el: document.getElementById('filter-order'), key: 'order'}
     ];
-    selects.forEach(sel => {
-        if (sel) {
-            const instance = new Choices(sel, {
+    selects.forEach(obj => {
+        if (obj.el) {
+            const instance = new Choices(obj.el, {
                 searchEnabled: false,
                 itemSelectText: '',
                 shouldSort: false,
                 classNames: {
-                    containerOuter: 'custom-choices' // Un seul nom de classe ici !
+                    containerOuter: 'custom-choices'
                 }
             });
-            // Ajoute la classe 'choices' manuellement pour garder la compatibilité CSS
             instance.containerOuter.element.classList.add('choices');
+            instance.containerOuter.element.setAttribute('data-filter', obj.key);
         }
     });
 });
