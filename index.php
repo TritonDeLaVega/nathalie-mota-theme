@@ -59,6 +59,9 @@
             }
             ?>
         </select>
+
+        <div class="filter-spacer"></div> <!-- Espacement central -->
+        
         <select id="filter-order">
             <option value="DESC">TRIER PAR</option>
             <option value="DESC">Plus récentes</option>

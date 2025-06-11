@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
         {el: document.getElementById('filter-format'), key: 'format'},
         {el: document.getElementById('filter-order'), key: 'order'}
     ];
+    
     selects.forEach(obj => {
         if (obj.el) {
             const instance = new Choices(obj.el, {
@@ -18,4 +19,5 @@ document.addEventListener('DOMContentLoaded', function () {
             instance.containerOuter.element.setAttribute('data-filter', obj.key);
         }
     });
+
 });

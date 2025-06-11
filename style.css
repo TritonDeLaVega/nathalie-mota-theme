@@ -328,88 +328,75 @@ main,
 
 /* ===== Filtres grille ===== */
 .filters {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 1fr 1fr 1fr 1fr; /* 4 colonnes égales */
     gap: 1rem;
     width: 100%;
     margin-bottom: 2rem;
-    position: relative;
-    z-index: 10;
+    align-items: start;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
 }
 
-/* Placement précis */
+/* Assignation explicite des colonnes */
 .filters .custom-choices[data-filter="categorie"] { grid-column: 1 / 2; }
 .filters .custom-choices[data-filter="format"]    { grid-column: 2 / 3; }
+.filter-spacer                                     { grid-column: 3 / 4; } /* colonne vide */
 .filters .custom-choices[data-filter="order"]     { grid-column: 4 / 5; }
 
-/* Style de base Choices.js */
-.filters .custom-choices {
+
+/* Styles Choices */
+.custom-choices {
     width: 100%;
-    align-self: center; /* Assurer un alignement uniforme */
     position: relative;
-    min-width: 0;
     z-index: 100;
     display: flex;
-    align-items: center; /* Alignement vertical homogène */
-}
-
-.choices[data-type*=select-one] .choices__inner {
-    padding-bottom: 0;
-}
-.choices__list--single {
-    display: inline-block;
-    padding: 4px 4px 4px 4px;
-    width: 100%;
+    flex-direction: column;
 }
 
 .custom-choices .choices__inner {
-    border: 1px solid #000;
+    border: 1px solid #000 !important;
     border-radius: 4px;
     background: #fff;
-    min-height: 35px;
+    min-height: 42px;
     padding: 0.6rem 2.5rem 0.6rem 1rem;
-    font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     color: #000 !important;
     box-sizing: border-box;
-    align-items: center;
     display: flex;
+    align-items: center;
 }
 
-/* Suppression de la flèche custom pour éviter le désalignement */
-.custom-choices .choices__inner::after {
+/* Restaurer flèche si besoin */
+.choices__inner::after {
     display: none;
 }
 
-/* Placeholder noir */
 .choices__placeholder {
     color: #000 !important;
     opacity: 1 !important;
 }
 
-/* Bordure focus */
 .custom-choices.is-open .choices__inner,
 .custom-choices.is-focused .choices__inner {
     border-color: #215AFF !important;
 }
 
-/* Dropdown positionné juste en-dessous */
+/* Dropdown */
 .custom-choices .choices__list--dropdown,
 .custom-choices .choices__list[aria-expanded] {
     z-index: 1000 !important;
-    position: absolute !important;
-    top: 100% !important;
-    margin-top: 0 !important;
+    position: absolute;
+    top: 100%;
     left: 0;
     right: 0;
     background: #fff;
     border: 1px solid #000;
     border-radius: 0 0 4px 4px;
+    margin-top: 0;
 }
 
-/* Dropdown items */
+/* Items dropdown */
 .custom-choices .choices__list--dropdown .choices__item--selectable {
     color: #000 !important;
     background: #fff;
@@ -426,6 +413,7 @@ main,
     background-color: #E00000 !important;
     color: #fff !important;
 }
+
 
 
 /* Galerie */
