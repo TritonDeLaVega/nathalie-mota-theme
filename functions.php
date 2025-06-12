@@ -1,4 +1,9 @@
 <?php
+add_action('send_headers', function() {
+    header('Content-Type: text/html; charset=utf-8');
+});
+add_theme_support('title-tag');
+
 
 // Enqueue Google Fonts and custom styles/scripts
 function mota_enqueue_assets()

@@ -35,7 +35,7 @@
 
 <main class="gallery-page">
     <div class="filters">
-        <select id="filter-categorie">
+        <select id="filter-categorie" title="Choisir une catégorie">
             <option value="">CATÉGORIES</option>
             <?php
             $categories = get_terms([
@@ -47,7 +47,8 @@
             }
             ?>
         </select>
-        <select id="filter-format">
+
+        <select id="filter-format" title="Choisir un format">
             <option value="">FORMATS</option>
             <?php
             $formats = get_terms([
@@ -60,14 +61,15 @@
             ?>
         </select>
 
-        <div class="filter-spacer"></div> <!-- Espacement central -->
-        
-        <select id="filter-order">
+        <div class="filter-spacer"></div>
+
+        <select id="filter-order" title="Trier les photos">
             <option value="DESC">TRIER PAR</option>
             <option value="DESC">Plus récentes</option>
             <option value="ASC">Plus anciennes</option>
         </select>
     </div>
+
 
     <div class="gallery-grid">
         <!-- Les photos seront injectées ici par JS -->
