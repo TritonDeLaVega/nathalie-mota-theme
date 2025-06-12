@@ -1120,9 +1120,16 @@ body.lightbox-open {
 
     .site-logo {
         max-height: 50px;
-        /* limite la hauteur du logo si besoin */
         height: auto;
         width: auto;
+    }
+        body.admin-bar{
+        margin-top: 0px;
+    }
+    /* ✅ Espacement latéral pour logo et burger */
+    .header-container {
+        padding: 0 16px;
+        box-sizing: border-box;
     }
 
     /* ✅ Barre admin WordPress */
@@ -1133,11 +1140,6 @@ body.lightbox-open {
     body {
         margin: 0;
         padding: 0;
-    }
-
-    body.admin-bar {
-        margin-top: 46px;
-        /* ou ajuste selon la hauteur de la barre */
     }
 
     /* Supprime tout espace fantôme entre header/nav et hero */
@@ -1188,6 +1190,19 @@ body.lightbox-open {
         margin-top: 0.5rem !important;
     }
 
+    /* Masque l'espacement central mobile */
+    .filter-spacer {
+        display: none !important;
+        width: 0;
+        height: 0;
+    }
+
+    .filters .choices__inner {
+        margin: 0 !important;
+        padding: 6px 10px !important;
+        min-height: auto !important;
+    }
+
     .filters .custom-choices {
         margin: 0 !important;
         padding: 0 !important;
@@ -1197,12 +1212,17 @@ body.lightbox-open {
         margin-bottom: 20px;
     }
 
+    /* 🆕 Espace de 5px entre 2e et 3e filtre */
+    .filters .custom-choices:nth-of-type(4) {
+        margin-top: 8px !important;
+    }
+
     /* Largeur + stacking context individuel */
     .filters .choices {
         width: 90% !important;
         max-width: 400px !important;
         position: relative !important;
-        z-index: 10 !important;
+        /* z-index: 10 !important; */
         overflow: visible !important;
         margin-bottom: 3rem !important;
         /* ✅ espace pour dropdown */
@@ -1223,11 +1243,6 @@ body.lightbox-open {
         border: 1px solid #ccc !important;
     }
 
-    /* Masque l'espacement central mobile */
-    .filter-spacer {
-        display: none !important;
-    }
-
     /* Parents doivent laisser passer le débordement */
     body,
     html,
@@ -1246,6 +1261,7 @@ body.lightbox-open {
     .filters .choices {
         position: relative !important;
         z-index: 1 !important;
+        margin: 0 !important;
     }
 
     .filters .choices.is-open {
