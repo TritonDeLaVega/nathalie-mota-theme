@@ -153,6 +153,7 @@ get_header(); ?>
       'format' => ($format && !is_wp_error($format)) ? $format[0]->name : '',
       'type' => get_post_meta($photo->ID, 'type', true),
       'annee' => get_post_meta($photo->ID, 'annee', true),
+      'permalink' => get_permalink($photo->ID),
     ];
     if ($photo->ID == $current_id) {
       $current_index = $i;

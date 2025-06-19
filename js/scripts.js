@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="suggestion-item">
                     <img src="${photo.img}" alt="${photo.title}">
                     <div class="overlay"></div>
-                    <a href="/photo/${photo.id}" aria-label="Voir la photo en détail">
+                    <a href="${photo.permalink}" aria-label="Voir la photo en détail">
                         <div class="icon-eye"></div>
                     </a>
                     <div class="icon-fullscreen"
@@ -145,6 +145,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="text-bottom-right">${photo.categorie}</div>
                 </div>
             `).join('');
+
+            document.dispatchEvent(new Event('galleryUpdated'));
         }
 
         function updateImages() {
@@ -248,7 +250,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                 `;
             });
+            document.dispatchEvent(new Event('galleryUpdated'));
         }
+
 
         function fetchPhotos(reset = false) {
             if (loading) return;
