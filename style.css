@@ -1300,8 +1300,21 @@ body.lightbox-open {
 
 
     /* ===== Page "single-photo" ===== */
+    main.single-photo {
+        padding: 0;
+    }
+
+    .main-inner-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+        box-sizing: border-box;
+        /* Ajoute un padding horizontal si tu veux respirer sur petits écrans */
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
     .single-photo {
-        padding: 2rem 1rem;
         max-width: 100%;
         margin: 0 auto;
         box-sizing: border-box;
@@ -1310,20 +1323,13 @@ body.lightbox-open {
 
     .photo-detail-wrapper {
         display: flex;
-        flex-direction: column;
+        flex-wrap: wrap;
         gap: 2rem;
-        align-items: baseline;
+        align-items: flex-end;
     }
 
     .photo-detail {
         order: -1;
-        /* ✅ place la photo avant les infos */
-        display: flex;
-        flex-direction: column;
-        /* ou row si horizontal */
-        align-items: stretch;
-        /* au lieu de flex-start */
-        margin-top: -2rem;
     }
 
     .photo-image {
@@ -1345,16 +1351,15 @@ body.lightbox-open {
         padding: 0;
     }
 
-    .photo-image img {
+    /* .photo-image img {
         width: 100%;
         max-width: none !important;
         height: auto;
         object-fit: contain !important;
-        /* ✅ Garde l’image complète sans recadrage */
         display: block;
         margin-left: auto !important;
         margin-right: auto !important;
-    }
+    } */
 
     .suggestions-grid>img {
         display: block;
@@ -1372,11 +1377,6 @@ body.lightbox-open {
         max-height: none;
         margin-top: 0;
     }
-
-    /* .photo-info>*:not(.contact-section),
-    .photo-meta {
-        margin-top: 0 !important;
-    } */
 
     .photo-info h1 {
         font-size: 2.2rem;
