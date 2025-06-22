@@ -1286,6 +1286,7 @@ body.lightbox-open {
     * {
         outline: 1px solid red !important;
     }
+
     /* =========== code pour contraindre tous les éléments à ne pas dépasser de la page ============== */
     html,
     body {
@@ -1334,7 +1335,7 @@ body.lightbox-open {
         overflow: visible;
         margin: 0 auto;
         padding: 0 !important;
-    
+
     }
 
 
@@ -1343,15 +1344,18 @@ body.lightbox-open {
         box-sizing: border-box;
         padding: 0;
     }
+
     .photo-image img {
         width: 100%;
         max-width: none !important;
         height: auto;
-        object-fit: contain !important; /* ✅ Garde l’image complète sans recadrage */
+        object-fit: contain !important;
+        /* ✅ Garde l’image complète sans recadrage */
         display: block;
         margin-left: auto !important;
         margin-right: auto !important;
     }
+
     .suggestions-grid>img {
         display: block;
         width: 100%;
@@ -1392,45 +1396,48 @@ body.lightbox-open {
 
     /* ===== Section contact corrigée ===== */
     .contact-section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        gap: 1rem;
+        display: block !important;
         padding: 1.5rem 1rem;
-        /* ✅ padding horizontal ajouté */
         margin: 0 auto;
-        max-width: 100%;
         width: 100%;
         box-sizing: border-box;
-        overflow: visible;
         border-top: 1px solid #000;
         border-bottom: 1px solid #000;
         position: relative;
+        text-align: center;
     }
 
-    .contact-section p {
+    .contact-section-content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        width: 100% !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .contact-section-content p {
         font-size: 0.8rem;
         text-align: left !important;
-        margin: 0 0 1rem 0;
+        margin-bottom: 1rem !important;
         max-width: none;
-        white-space: nowrap;
-        /* ✅ Empêche le retour à la ligne */
+        white-space: normal;
     }
 
-    .contact-section button {
-        padding: 0.7rem 5rem;
-        font-size: 1rem;
-        width: auto;
-        margin: 0 auto;
-        display: block;
+    .open-contact-modal {
+        display: block !important;
+        width: 100% !important;
+        max-width: 300px !important;
+        margin: 0 auto !important;
+        margin-top: 1rem !important;
     }
 
     .contact-section::after {
         display: none;
     }
 
+    .lightbox-thumbnail {
+        display: none !important;
+    }
 
     /* ===== Suggestions ===== */
     .suggestions-grid {
