@@ -38,6 +38,24 @@ Version: 1.0
     font-display: swap;
 }
 
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.entry-title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.entry-content {
+    line-height: 1.8;
+    font-size: 1rem;
+    color: #333;
+}
+
 html,
 body {
     width: 100%;
@@ -597,7 +615,6 @@ main.single-photo {
     margin: 0 auto;
     width: 100%;
     box-sizing: border-box;
-    /* Ajoute un padding horizontal si tu veux respirer sur petits écrans */
     padding-left: 1rem;
     padding-right: 1rem;
 }
@@ -1330,18 +1347,26 @@ body.lightbox-open {
 
     .photo-detail {
         order: -1;
+        position: relative;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .photo-image img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        display: block;
+        object-fit: contain;
     }
 
     .photo-image {
-        display: flex;
-        align-items: flex-start;
-        justify-content: center;
         width: 100%;
-        max-width: 100%;
-        overflow: visible;
-        margin: 0 auto;
-        padding: 0 !important;
-
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
 
@@ -1350,16 +1375,6 @@ body.lightbox-open {
         box-sizing: border-box;
         padding: 0;
     }
-
-    /* .photo-image img {
-        width: 100%;
-        max-width: none !important;
-        height: auto;
-        object-fit: contain !important;
-        display: block;
-        margin-left: auto !important;
-        margin-right: auto !important;
-    } */
 
     .suggestions-grid>img {
         display: block;
@@ -1392,6 +1407,10 @@ body.lightbox-open {
         text-align: left;
     }
 
+    .photo-meta {
+        margin-bottom: 0px;
+
+    }
 
 
     /* ===== Section contact corrigée ===== */
@@ -1493,7 +1512,7 @@ body.lightbox-open {
 @media screen and (max-width: 1024px) {
 
     .photo-info>*:not(.contact-section) {
-        margin-top: 18.9rem;
+        margin-top: 0;
     }
 
     .contact-section::after {

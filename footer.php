@@ -1,7 +1,7 @@
 <footer class="site-footer">
     <ul class="footer-links">
         <li><a href="#">MENTIONS LÉGALES</a></li>
-        <li><a href="#">VIE PRIVÉE</a></li>
+        <li><a href="<?php echo esc_url( get_permalink( get_option('wp_page_for_privacy_policy') ) ); ?>">VIE PRIVÉE</a></li>
         <li><a href="#">TOUS DROITS RÉSERVÉS</a></li>
     </ul>
 </footer>
