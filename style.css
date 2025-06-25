@@ -59,7 +59,7 @@ Version: 1.0
 html,
 body {
     width: 100%;
-    margin: 0;
+    /* margin: 0; */
     padding: 0;
     box-sizing: border-box;
     overflow-x: hidden;
@@ -1150,7 +1150,7 @@ body.lightbox-open {
     }
 
     .site-header {
-        
+
         top: 0;
         left: 0;
         width: 100%;
@@ -1171,9 +1171,10 @@ body.lightbox-open {
     }
 
     body.admin-bar .mobile-nav {
-        top: calc(32px + 70px) !important;
-        /* 70px = hauteur de ton header, adapte si besoin */
-        height: calc(100% - 32px - 70px) !important;
+        top: calc(46px + 56px) !important;
+        /* 46px barre admin + 56px header mobile */
+        height: calc(100% - 46px - 56px) !important;
+
     }
 
     /* ✅ Espacement latéral pour logo et burger */
@@ -1188,7 +1189,7 @@ body.lightbox-open {
     }
 
     body {
-        margin: 0;
+        /* margin: 0; */
         padding: 0;
     }
 
@@ -1616,6 +1617,35 @@ body.lightbox-open {
         gap: 0.7rem;
     }
 
+    body.menu-open .header-banner,
+    body.menu-open .header-banner-image,
+    body.menu-open .gallery-page,
+    body.menu-open main.gallery-page,
+    body.menu-open .filters,
+    body.menu-open .filters .choices__list--dropdown,
+    body.menu-open .filters .choices.is-open,
+    body.menu-open .site-footer {
+        display: none !important;
+        position: relative !important;
+        z-index: 1 !important;
+        /* Ou même display: none !important; si tu veux tout masquer */
+    }
+
+    .mobile-nav {
+        position: fixed;
+        left: 0;
+        width: 100%;
+        top: 56px;
+        height: calc(100% - 56px);
+    }
+
+    body.menu-open .mobile-nav {
+        z-index: 1200 !important;
+    }
+
+    body.menu-open .site-header {
+        z-index: 1300 !important;
+    }
 }
 
 
