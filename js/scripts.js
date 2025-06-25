@@ -14,11 +14,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 mobileNav.classList.add('hidden');
                 burger.classList.remove('open');
                 body.classList.remove('menu-open');
+                document.documentElement.classList.remove('menu-open'); // Ajouté
             } else {
                 mobileNav.classList.add('visible');
                 mobileNav.classList.remove('hidden');
                 burger.classList.add('open');
                 body.classList.add('menu-open');
+                document.documentElement.classList.add('menu-open'); // Ajouté
             }
         });
 

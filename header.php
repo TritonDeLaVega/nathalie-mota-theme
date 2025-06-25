@@ -10,6 +10,16 @@
 </head>
 
 <body <?php body_class(); ?>>
+    <!-- Mobile menu OUTSIDE the header -->
+    <nav class="mobile-nav hidden" id="mobile-nav">
+        <?php
+        wp_nav_menu(array(
+            'theme_location' => 'main-menu',
+            'container' => false,
+            'menu_class' => 'mobile-menu',
+        ));
+        ?>
+    </nav>
 
     <header class="site-header">
         <div class="header-container">
@@ -39,15 +49,3 @@
             </div>
         </div>
     </header>
-
-    
-    <!-- Mobile menu OUTSIDE the header -->
-    <nav class="mobile-nav hidden" id="mobile-nav">
-        <?php
-        wp_nav_menu(array(
-            'theme_location' => 'main-menu',
-            'container' => false,
-            'menu_class' => 'mobile-menu',
-        ));
-        ?>
-    </nav>

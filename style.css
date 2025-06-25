@@ -59,7 +59,6 @@ Version: 1.0
 html,
 body {
     width: 100%;
-    min-width: 100vw;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -78,13 +77,33 @@ body {
     flex-direction: column;
 }
 
+body.menu-open,
+html.menu-open {
+    overflow: hidden !important;
+    height: 100vh !important;
+    touch-action: none;
+}
+
+body.admin-bar {
+    margin-top: 0px;
+}
+
+
+body.admin-bar .mobile-nav {
+    top: calc(32px + 70px) !important;
+    /* 70px = hauteur du header desktop */
+    height: calc(100% - 32px - 70px) !important;
+}
+
 .site-header {
+    top: auto;
+    left: auto;
+    width: 100%;
     background: #fff;
     padding: 20px;
     border-bottom: 1px solid #eee;
     position: relative;
-    z-index: 1200;
-    /* toujours au-dessus du menu */
+    z-index: auto;
 }
 
 .site-header::after {
@@ -284,12 +303,11 @@ main,
 /* Mobile navigation menu - FULL SCREEN */
 .mobile-nav {
     position: fixed;
-    top: 0;
+    top: 70px;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: calc(100% - 70px);
     background-color: #E00000;
-    /* rouge vif */
     text-align: center;
     z-index: 1100;
     display: flex;
@@ -980,8 +998,8 @@ body.lightbox-open {
 
 .lightbox-close {
     position: absolute;
-    top: -5rem;
-    right: 1rem;
+    top: -0.5rem;
+    right: 5.5rem;
     background: none;
     border: none;
     font-size: 2.2rem;
@@ -1036,9 +1054,9 @@ body.lightbox-open {
 
 .lightbox-ref,
 .lightbox-cat {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal;
+    text-overflow: unset;
+    overflow: visible;
 }
 
 
@@ -1132,8 +1150,14 @@ body.lightbox-open {
     }
 
     .site-header {
+        
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1200;
+        background: #fff;
         padding: 10px;
-        position: relative;
+        border-bottom: 1px solid #eee;
     }
 
     .site-logo {
@@ -1144,6 +1168,12 @@ body.lightbox-open {
 
     body.admin-bar {
         margin-top: 0px;
+    }
+
+    body.admin-bar .mobile-nav {
+        top: calc(32px + 70px) !important;
+        /* 70px = hauteur de ton header, adapte si besoin */
+        height: calc(100% - 32px - 70px) !important;
     }
 
     /* ✅ Espacement latéral pour logo et burger */
@@ -1531,7 +1561,60 @@ body.lightbox-open {
         /* ou moins */
     }
 
+    /*============= lightbox mobile =============*/
 
+    .lightbox-close {
+        top: 0.1rem;
+        right: 2.5rem;
+    }
+
+    .lightbox-prev,
+    .lightbox-next {
+        font-size: 2rem;
+        min-width: 40px;
+        max-width: 15vw;
+        padding: 0.5rem 0.5rem;
+        position: relative;
+        text-indent: 0;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .lightbox-prev {
+        color: transparent;
+    }
+
+    .lightbox-prev::before {
+        content: "←";
+        color: #fff;
+        position: absolute;
+        left: 0.5em;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 2rem;
+        pointer-events: none;
+    }
+
+    .lightbox-next {
+        color: transparent;
+    }
+
+    .lightbox-next::before {
+        content: "→";
+        color: #fff;
+        position: absolute;
+        left: 0.5em;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 2rem;
+        pointer-events: none;
+    }
+
+    .lightbox-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.7rem;
+    }
 
 }
 
