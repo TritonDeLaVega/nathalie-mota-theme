@@ -1179,6 +1179,11 @@ body.lightbox-open {
 
     }
 
+    body.admin-bar .mobile-nav {
+        top: calc(35px + 56px) !important;
+        height: calc(100% - 35px - 56px) !important;
+    }
+
     /* ✅ Espacement latéral pour logo et burger */
     .header-container {
         padding: 0 16px;
@@ -1646,7 +1651,7 @@ body.lightbox-open {
 }
 
 
-@media screen and (max-width: 1024px) {
+@media screen and (width: 1024px) {
 
     .photo-info>*:not(.contact-section) {
         margin-top: 0;
@@ -1654,5 +1659,15 @@ body.lightbox-open {
 
     .contact-section::after {
         width: 31rem;
+    }
+    .header-container {
+        justify-content: flex-start;
+        padding-left: 2rem; /* ajuste selon besoin */
+        padding-right: 2rem;
+    }
+    .main-nav .menu {
+        justify-content: flex-start;
+        gap: 1.2rem; /* réduit l'écart si besoin */
+        margin-left: 29.5rem;
     }
 }
